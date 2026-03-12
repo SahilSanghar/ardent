@@ -102,7 +102,13 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
           }`}
         >
           <Image
-            src={realestate ? "/realestate.jpg" : "/doctor.jpg"}
+          src={
+  pragency
+    ? "/pragency-1.jpeg"
+    : realestate
+    ? "/realestate.jpg"
+    : "/doctor.jpg"
+}
             alt="doctor"
             fill
             className={`object-cover opacity-50  grayscale ${
@@ -514,7 +520,13 @@ Many companies:
               >
                 Our <span className="ml-3 font-bold">Solution</span>{" "}
                 <a
-                  href={healthcare ? "/healthcare#home" : "/realestate#home"}
+                  href={
+  pageType === "healthcare"
+    ? "/healthcare#home"
+    : pageType === "pragency"
+    ? "/pr-agency#home"
+    : "/realestate#home"
+}
                   className="font-bold xl:text-xl md:text-base text-sm border-2 ml-3 border-red-600 bg-yellow-500 rounded-full md:px-5 px-3 py-1 mt-3 md:mt-0"
                 >
                   Book A Strategy Call
@@ -682,7 +694,13 @@ Many companies:
         {/* end */}
         <section className="w-full relative h-fit min-w-screen md:min-h-screen min-h-fit flex flex-col items-center justify-center text-white md:my-0 py-20">
           <Image
-            src={healthcare ? "/doctor.jpg" : "/realestate.jpg"}
+            src={
+  pragency
+    ? "/pragency-2.jpeg"
+    : healthcare
+    ? "/doctor.jpg"
+    : "/realestate.jpg"
+}
             alt="doctor"
             fill
             className="object-cover opacity-50 grayscale -z-10 absolute inset-0"
@@ -704,7 +722,13 @@ Many companies:
             <span className="text-ardent font-bold md:mx-3 mx-2">Choose</span>{" "}
             Ardent Co.{" "}
             <a
-              href={healthcare ? "/healthcare#home" : "/realestate#home"}
+            href={
+  pageType === "healthcare"
+    ? "/healthcare#home"
+    : pageType === "pragency"
+    ? "/pr-agency#home"
+    : "/realestate#home"
+}
               className="font-bold xl:text-xl md:text-base text-sm border-2 md:ml-5 ml-0 border-red-600 bg-yellow-500 rounded-full md:px-5 px-3 py-1 mt-3 md:mt-0 text-black"
             >
               Book A Strategy Call
