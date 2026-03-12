@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: black;
+}
+/* 
+::selection {
+  color: black;
+  background: rgb(250 204 21);
+}  */
+#chessLineArt {
+  stroke-dasharray: 31012.29296875;
+  stroke-dashoffset: 31012.29296875;
+  animation: animateChessLineArt 10s ease-in-out forwards;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes animateChessLineArt {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
