@@ -82,7 +82,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
   return (
     <>
      
-      <Navbar contact={false} />
+{pageType !== "pragency" && <Navbar contact={false} />}
       <div className=" md:h-full h-fit w-full">
         {/* lander */}
         <motion.div
