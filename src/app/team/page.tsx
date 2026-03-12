@@ -194,6 +194,17 @@ Sarthak discovered his calling in communications through a complex non-tradition
             des1="Meghna Juneja is a communications professional with expertise in strategic media relations, content development, and narrative building. Meghna has worked with a diverse set of clients across sectors, helping shape impactful communication strategies and strengthening brand positioning through targeted outreach. Leveraging her understanding of media landscapes, stakeholder engagement, and policy-linked narratives, she has supported clients in designing thought leadership platforms, executing integrated media campaigns, managing crisis communication, and driving sustained visibility through strategic storytelling and relationship building."
             
           />
+           <Person
+            name="Grusha Khanna"
+            image="/team/consultants/grusha-khanna.webp"
+            role="Manager, Public Relations"
+            theme="dark"
+            link="https://www.linkedin.com/in/grusha-khanna-068911157/"
+            position="50% 50%"
+            des1="Grusha is a public relations and communications professional with over seven years of experience in the media and communications industry. Her work spans diverse sectors including B2B technology, fintech, advertising and marketing, and consumer technology, where she has helped shape narratives, manage reputation, and build meaningful engagement between organizations and their audiences."
+            des2="With a strong grounding in strategic communications, Grusha approaches public relations as more than messaging—it is a discipline rooted in insight, research, and understanding public perception. Her work combines analytical thinking with compelling storytelling, enabling brands and institutions to communicate complex ideas with clarity and impact.<br/><br/>Over the years, she has contributed to high-stakes communication initiatives that demand both strategic depth and creative execution. Known for her thoughtful approach and curiosity-driven mindset, she thrives in environments that value intellectual rigor, evidence-based communication, and bold ideas. Her professional philosophy centers on using communications as a tool to influence conversations, shape policy and industry narratives, and drive meaningful real-world impact."
+            
+          />
         </div>
 
         <div className="flex w-full h-fit text-center justify-center my-20 ">
