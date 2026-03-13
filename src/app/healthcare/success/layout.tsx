@@ -30,16 +30,25 @@ export default function RootLayout({
   `}
         </Script> */}
 
-
-         <Script
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-17389056295"
         ></Script>{" "}
 
+        <Script id="google-analytics-init">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17389056295');
+          `}
+        </Script>
 
-        <Script id="google-analytics-success-healthcare">{` gtag('event', 'conversion', {'send_to': 'AW-17389056295/qd-gCOKRopMbEKfi3-NA'}); `}</Script>
-
-        
+        <Script id="google-analytics-success-healthcare">
+          {`
+            gtag('event', 'conversion', {'send_to': 'AW-17389056295/qd-gCOKRopMbEKfi3-NA'});
+          `}
+        </Script>
       </head>
 
       <body>{children}</body>
