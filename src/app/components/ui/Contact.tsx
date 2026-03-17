@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 interface FormData {
   firstName: string;
   lastName: string;
+  companyName: string;
+  designation: string;
   phone: string;
   email: string;
   message: string;
@@ -33,6 +35,8 @@ export default function Contact({ client }: Props) {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
+  companyName: "",
+  designation: "",
     phone: "",
     email: "",
     message: "",
@@ -56,6 +60,8 @@ export default function Contact({ client }: Props) {
       .post("/api/ClientSubmit", {
         firstname: formData.firstName,
         lastname: formData.lastName,
+        companyname: formData.companyName,
+        designation: formData.designation,
         phone: formData.phone,
         email: formData.email,
         message: formData.message,
@@ -68,6 +74,8 @@ export default function Contact({ client }: Props) {
           ...prev,
           firstName: "",
           lastName: "",
+          companyName: "",
+          designation: "",
           phone: "",
           email: "",
           message: "",
@@ -191,13 +199,54 @@ export default function Contact({ client }: Props) {
                       handleInputChange("lastName", e.target.value)
                     }
                     className="px-4 py-2 border-black border-2 rounded focus:outline-none"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between space-x-2">
+                <div className="flex flex-col w-[49%]">
+                  <label
+                    htmlFor="companyName"
+                    className="text-black font-bold mb-1"
+                  >
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    id="companyName"
+                    placeholder="Company Name"
+                    value={formData.companyName}
+                    onChange={(e) =>
+                      handleInputChange("companyName", e.target.value)
+                    }
+                    className={`px-4 py-2 border-black border-2 rounded focus:outline-none`}
+                    required
+                  />
+                </div>
+                <div className="flex flex-col w-[49%]">
+                  <label
+                    htmlFor="designation"
+                    className="text-black font-bold mb-1"
+                  >
+                    Designation
+                  </label>
+                  <input
+                    type="text"
+                    id="designation"
+                    placeholder="Designation"
+                    value={formData.designation}
+                    onChange={(e) =>
+                      handleInputChange("designation", e.target.value)
+                    }
+                    className="px-4 py-2 border-black border-2 rounded focus:outline-none"
+                    required
                   />
                 </div>
               </div>
 
               <div className="flex flex-col">
                 <label htmlFor="email" className="text-black font-bold mb-1">
-                  Email
+                  Company Email
                 </label>
                 <input
                   type="email"
