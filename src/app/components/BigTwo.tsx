@@ -17,6 +17,8 @@ interface FormData {
   phone: string;
   email: string;
   company: string;
+  designation: string;
+  message: string; 
   loading: boolean;
   success: boolean;
   error: string;
@@ -28,6 +30,8 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
     phone: "",
     email: "",
     company: "",
+  designation: "",
+  message: "", 
     loading: false,
     success: false,
     error: "",
@@ -50,6 +54,8 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
         phone: formData.phone,
         email: formData.email,
         company: formData.company,
+    designation: formData.designation,
+    message: formData.message,
       }
     );
 
@@ -203,68 +209,94 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
             <div className="w-full h-full min-w-screen flex items-center justify-center md:mt-0 mt-10">
               <div className="xl:w-[60%] md:w-[70%] w-[70%] h-fit flex md:p-10 p-5 bg-white/50 backdrop-blur-sm border-2 border-ardent rounded-xl justify-center items-center">
                 <form
-                  className="w-full h-fit flex flex-col md:gap-10 gap-5 text-white md:text-base text-sm"
-                  onSubmit={onSubmit}
-                >
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="w-full h-10  rounded-full p-5 bg-black/50"
-                    placeholder="Name"
-                    id="name"
-                  />
-                  <input
-                    type="text"
-                    name="Email"
-                    required
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full h-10  rounded-full p-5 bg-black/50"
-                    placeholder="Email"
-                    id="email"
-                  />
-                  <input
-                    type="number"
-                    name="Phone"
-                    required
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                    className="w-full h-10  rounded-full p-5 bg-black/50"
-                    placeholder="Phone"
-                    id="phone"
-                  />
-                  <input
-                    type="text"
-                    name="companyName"
-                    required
-                    value={formData.company}
-                    onChange={(e) =>
-                      setFormData({ ...formData, company: e.target.value })
-                    }
-                    className="w-full h-10  rounded-full p-5 bg-black/50"
-                    placeholder="Company Name"
-                    id="companyName"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full p-3  rounded-full font-bold bg-ardent text-black border-2 border-black"
-                  >
-                    {formData.loading
-                      ? "Sending..."
-                      : formData.success
-                      ? "Sent successfully!"
-                      : "Book A Strategy Call Now"}
-                  </button>
-                </form>
+  className="w-full h-fit flex flex-col md:gap-6 gap-4 text-white md:text-base text-sm"
+  onSubmit={onSubmit}
+>
+  {/* Row 1 — Name */}
+  <input
+    type="text"
+    name="name"
+    required
+    value={formData.name}
+    onChange={(e) =>
+      setFormData({ ...formData, name: e.target.value })
+    }
+    className="w-full h-10 rounded-full px-5 bg-black/50"
+    placeholder="Name"
+  />
+
+  {/* Row 2 — Company Name + Email */}
+  <div className="flex gap-4">
+    <input
+      type="text"
+      required
+      value={formData.company}
+      onChange={(e) =>
+        setFormData({ ...formData, company: e.target.value })
+      }
+      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+      placeholder="Company Name"
+    />
+
+    <input
+      type="email"
+      required
+      value={formData.email}
+      onChange={(e) =>
+        setFormData({ ...formData, email: e.target.value })
+      }
+      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+      placeholder="Company Email"
+    />
+  </div>
+
+  {/* Row 3 — Phone + Designation */}
+  <div className="flex gap-4">
+    <input
+      type="tel"
+      required
+      value={formData.phone}
+      onChange={(e) =>
+        setFormData({ ...formData, phone: e.target.value })
+      }
+      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+      placeholder="Phone"
+    />
+
+    <input
+      type="text"
+      required
+      value={formData.designation}
+      onChange={(e) =>
+        setFormData({ ...formData, designation: e.target.value })
+      }
+      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+      placeholder="Designation"
+    />
+  </div>
+
+  {/* Row 4 — Message */}
+  <textarea
+    value={formData.message}
+    onChange={(e) =>
+      setFormData({ ...formData, message: e.target.value })
+    }
+    className="w-full rounded-xl p-5 bg-black/50"
+    placeholder="Message (optional)"
+  />
+
+  {/* Button */}
+  <button
+    type="submit"
+    className="w-full p-3 rounded-full font-bold bg-ardent text-black border-2 border-black"
+  >
+    {formData.loading
+      ? "Sending..."
+      : formData.success
+      ? "Sent successfully!"
+      : "Book A Strategy Call Now"}
+  </button>
+</form>
               </div>
             </div>
           </motion.div>
