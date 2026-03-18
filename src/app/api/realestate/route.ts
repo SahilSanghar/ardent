@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function POST(request: NextRequest) {
-  const { name, phone, email, company } = await request.json();
+  const { name, phone, email, company, designation, message } = await request.json();
 
   try {
     // Send email
@@ -29,6 +29,8 @@ export async function POST(request: NextRequest) {
           Phone: ${phone}
           Email: ${email}
           Company: ${company} 
+          Designation: ${designation}
+          Message: ${message}
         `,
       html: `
           <h1>Real Estate Form</h1>
@@ -36,6 +38,8 @@ export async function POST(request: NextRequest) {
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Company:</strong> ${company}</p>
+          <p><strong>Designation:</strong> ${designation}</p>
+          <p><strong>Message:</strong> ${message}</p>
         `,
     });
 
