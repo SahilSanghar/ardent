@@ -47,54 +47,54 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
 };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
+  e.preventDefault();
 
-    setFormData((prev) => ({
-  ...prev,
-  loading: true,
-  success: false,
-  error: "",
-}));
+  setFormData((prev) => ({
+    ...prev,
+    loading: true,
+    success: false,
+    error: "",
+  }));
 
+  try {
     const response = await axios.post(
       pragency
-    ? "/api/pragency"
-    : healthcare
-    ? "/api/healthcare"
-    : "/api/realestate",
+        ? "/api/pragency"
+        : healthcare
+        ? "/api/healthcare"
+        : "/api/realestate",
       {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
         company: formData.company,
-    designation: formData.designation,
-    message: formData.message,
+        designation: formData.designation,
+        message: formData.message,
       }
     );
 
-    if (response.status != 200) {
-      setFormData({
-        ...formData,
-        loading: false,
-        error: "Something went wrong",
-        success: false,
-      });
+    console.log("STATUS:", response.status);
+
+    // ✅ ALWAYS redirect if success
+    if (response.status >= 200 && response.status < 300) {
+      window.location.href = pragency
+        ? "/pr-agency/success"
+        : healthcare
+        ? "/healthcare/success"
+        : "/realestate/success";
     }
 
-    window.location.href = pragency
-  ? "/pr-agency/success"
-  : healthcare
-  ? "/healthcare/success"
-  : "/realestate/success";
+  } catch (error: any) {
+    console.error("Frontend error:", error);
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       loading: false,
-      error: "",
-      success: true,
-    });
-  };
+      success: false,
+      error: "Submission failed",
+    }));
+  }
+};
 
   const [loaded, setLoaded] = useState(false);
   const pageType = pragency ? "pragency" : healthcare ? "healthcare" : "realestate";
