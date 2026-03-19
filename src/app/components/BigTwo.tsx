@@ -464,7 +464,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
                 <p className="text-bold text-4xl ">
                   The Problem <span className="font-black">We Solve</span>
                 </p>
-                <p className="md:text-xl text-base">
+                <div className="md:text-xl text-base">
                   {pageType === "healthcare" ? (
                     <>
                       Healthcare providers often struggle to authentically
@@ -488,7 +488,7 @@ Many companies:
                       underperform and trust is hard to build.
                     </>
                   )}
-                </p>
+                </div>
                 <p className="md:text-xl text-base">
                   {pageType === "healthcare" ? (
                     <>
