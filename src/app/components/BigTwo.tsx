@@ -472,7 +472,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
                       communication demands
                     </>
                   ) : pageType === "pragency" ? (
-                    <>
+                    <div>
 Many companies:
 <ul>
   <li>Struggle to get noticed by the media</li>
@@ -480,7 +480,7 @@ Many companies:
   <li>Have no leadership presence in news stories</li>
   <li>Rely only on ads and social media</li>
 </ul>
-                  </>
+                  </div>
                   ): (
                     <>
                       Real estate brands face the challenge of cutting through
