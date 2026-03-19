@@ -473,7 +473,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
                     </>
                   ) : pageType === "pragency" ? (
                     <div>
-Many companies:
+<p>Many companies:</p>
 <ul>
   <li>Struggle to get noticed by the media</li>
   <li>Miss coverage during major announcements</li>
