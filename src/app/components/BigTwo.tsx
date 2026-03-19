@@ -530,7 +530,6 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
                       className="absolute -translate-y-5 left-0 right-0 m-auto rounded-full bg-yellow-500 md:blur-3xl blur-2xl md:opacity-70 opacity-100 md:w-[200px] md:h-[150px] w-[100px] h-[75px] "
                     ></div>
                     <Image
-                      key={index}
                       src="/bulb.png"
                       alt="bulb"
                       height={200}
