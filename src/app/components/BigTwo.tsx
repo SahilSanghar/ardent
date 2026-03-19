@@ -37,11 +37,25 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
     error: "",
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
 
-    setFormData({ ...formData, loading: true, success: false, error: "" });
+    setFormData((prev) => ({
+  ...prev,
+  loading: true,
+  success: false,
+  error: "",
+}));
 
     const response = await axios.post(
       pragency
@@ -218,9 +232,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
     name="name"
     required
     value={formData.name}
-    onChange={(e) =>
-      setFormData({ ...formData, name: e.target.value })
-    }
+    onChange={handleChange}
     className="w-full h-10 rounded-full px-5 bg-black/50"
     placeholder="Name"
   />
@@ -229,22 +241,20 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
   <div className="flex gap-4">
     <input
       type="text"
+      name="company"
       required
       value={formData.company}
-      onChange={(e) =>
-        setFormData({ ...formData, company: e.target.value })
-      }
+      onChange={handleChange}
       className="w-1/2 h-10 rounded-full px-5 bg-black/50"
       placeholder="Company Name"
     />
 
     <input
       type="email"
+      name="email"
       required
       value={formData.email}
-      onChange={(e) =>
-        setFormData({ ...formData, email: e.target.value })
-      }
+      onChange={handleChange}
       className="w-1/2 h-10 rounded-full px-5 bg-black/50"
       placeholder="Company Email"
     />
@@ -254,22 +264,20 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
   <div className="flex gap-4">
     <input
       type="tel"
+      name="phone"
       required
       value={formData.phone}
-      onChange={(e) =>
-        setFormData({ ...formData, phone: e.target.value })
-      }
+      onChange={handleChange}
       className="w-1/2 h-10 rounded-full px-5 bg-black/50"
       placeholder="Phone"
     />
 
     <input
       type="text"
+      name="designation"
       required
       value={formData.designation}
-      onChange={(e) =>
-        setFormData({ ...formData, designation: e.target.value })
-      }
+      onChange={handleChange}
       className="w-1/2 h-10 rounded-full px-5 bg-black/50"
       placeholder="Designation"
     />
@@ -278,9 +286,8 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
   {/* Row 4 — Message */}
   <textarea
     value={formData.message}
-    onChange={(e) =>
-      setFormData({ ...formData, message: e.target.value })
-    }
+    name="message"
+    onChange={handleChange}
     className="w-full rounded-xl p-5 bg-black/50"
     placeholder="Message (optional)"
   />
