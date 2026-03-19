@@ -525,9 +525,8 @@ Many companies:
                 className="flex flex-row items-center justify-center mt-20 relative "
               >
                 {Array.from({ length: 3 }).map((_, index) => (
-                  <>
+                  <React.Fragment key={index}>
                     <div
-                      key={index}
                       className="absolute -translate-y-5 left-0 right-0 m-auto rounded-full bg-yellow-500 md:blur-3xl blur-2xl md:opacity-70 opacity-100 md:w-[200px] md:h-[150px] w-[100px] h-[75px] "
                     ></div>
                     <Image
@@ -538,7 +537,7 @@ Many companies:
                       width={200}
                       className="md:size-[100%] size-[50%]"
                     />
-                  </>
+                  </React.Fragment>
                 ))}
               </motion.div>
             </div>
