@@ -4,6 +4,11 @@ import axios from "axios";
 import Button from "./button";
 import { useRouter } from "next/navigation";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
 interface FormData {
   firstName: string;
   lastName: string;
@@ -69,6 +74,12 @@ export default function Contact({ client }: Props) {
       // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-unused-vars
       .then((response) => {
         setStatus("Email sent successfully!");
+        // ✅ ADD THIS (GTM EVENT)
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "lead_form_submit",
+    form: "public-relation"
+  });
         // Reset form
         setFormData((prev) => ({
           ...prev,
@@ -80,6 +91,8 @@ export default function Contact({ client }: Props) {
           email: "",
           message: "",
         }));
+
+  router.replace("/success");
       })
       .catch((error) => {
         setStatus("Network error. Please try again.");
@@ -87,7 +100,6 @@ export default function Contact({ client }: Props) {
       })
       .finally(() => {
         setIsSubmitting(false);
-        router.replace("/success");
       });
   };
 
