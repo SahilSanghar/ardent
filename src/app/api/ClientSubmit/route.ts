@@ -14,7 +14,15 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function POST(request: NextRequest) {
-  const { firstname, lastname, phone, email, message } = await request.json();
+  const {
+  firstname,
+  lastname,
+  companyname,
+  designation,
+  phone,
+  email,
+  message
+} = await request.json();
 
   try {
     // Send email
@@ -23,16 +31,20 @@ export async function POST(request: NextRequest) {
       to: "aishwarya.anup@ardentco.in", // Where you want to receive emails
       // to: "famousforgames@gmail.com",
       replyTo: email, // Set reply-to as sender's email
-      subject: `Client Form Submitted by ${email}`,
+      subject: `Public Relation Form Submitted by ${email}`,
       text: `
           Name: ${firstname + " " + lastname}
+  Company: ${companyname}
+  Designation: ${designation}
           Phone: ${phone}
           Email: ${email}
           Message: ${message}
         `,
       html: `
-          <h1>Client Form</h1>
+          <h1>Public Relation Form</h1>
           <p><strong>Name:</strong> ${firstname} ${lastname}</p>
+  <p><strong>Company:</strong> ${companyname}</p>
+  <p><strong>Designation:</strong> ${designation}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Message:</strong> ${message}</p>
