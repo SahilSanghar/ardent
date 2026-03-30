@@ -84,7 +84,7 @@ Sarthak discovered his calling in communications through a complex non-tradition
             des1="Aishwarya Anup, currently serving as the Business Strategy & Operations Lead at Ardent Co with over 5 years of experience. With an unwavering commitment to the company‘s success, Aishwarya has been an integral part of the organization since its inception. In her role at Ardent Co., she spearheads the company’s business growth and expansion efforts, overseeing day-to-day operational needs. Aishwarya’s remarkable track record includes successfully onboarding a diverse range of clients, including healthcare, corporate, B2B, healthtech, and government entities."
             des2="With over 5 years of experience in the Sales & Marketing domain, Aishwarya has honed her skills working with renowned digital agency Techmagnate and PR agency named Teamwork, among others.Apart from work,Aishwarya loves to read mythological books and binge-watch OTT content."
           />
-          <Person
+          {/* <Person
             name="Tanush Handa"
             image="/team/consultants/assistantManager1.jpg"
             role="Manager, Public Policy"
@@ -93,7 +93,7 @@ Sarthak discovered his calling in communications through a complex non-tradition
             position="50% 25%"
             des1="Tanush is working with us as an Assistant Manager - Public Policy at Ardent Co. is a public policy professional with more than 2 years of experience in the realm of policy & politics. As a public policy consultant, his primary role is to provide specialized advice and analysis regarding a broad spectrum of policy matters. He works closely alongside government agencies, non-profit organizations, and various stakeholders to identify and tackle societal challenges effectively. "
             des2="In the past, he has worked closely with the Govt. of Andhra Pradesh among a string of other politico-administrative entities in India on subject matters of development & public welfare, wherein he engaged with a multitude of key stakeholders. Tanush is high on sports and likes his coffee dark and bitter."
-          />
+          /> */}
 
           {/* <Person
             name="Sristi Rai"
@@ -106,7 +106,7 @@ Sarthak discovered his calling in communications through a complex non-tradition
           /> */}
           <Person
             name="Ekta Sharma"
-            image="/team/consultants/assistantManager3.jpg"
+            image="/team/consultants/ekta-img.webp"
             role="Manager, Digital Communications"
             theme="dark"
             link="https://www.linkedin.com/in/ekta4sure/"
@@ -134,7 +134,7 @@ Sarthak discovered his calling in communications through a complex non-tradition
             des2="He is a fitness freak always striving to stay active and healthy, with keen interest in stock markets and investments he likes to monitor market trends. In his leisure he enjoys video games"
           />
 
-          <Person
+          {/* <Person
             name="Binaira Vaishno Panwar"
             image="/team/consultants/manager.jpeg"
             role="Manager, Media and Communications Strategy"
@@ -142,7 +142,7 @@ Sarthak discovered his calling in communications through a complex non-tradition
             link="https://www.linkedin.com/in/binaira-vaishno-panwar-a93386119/"
             position="50% 30%"
             des1="Binaira is an experienced communications professional with over four years in the industry. She began her career at Archetype, formerly known as Text100, and subsequently worked with Crosshairs’s, The Yellow Coin, and Jaipur Rugs as a corporate communications assistant manager. Recently, she transitioned to Ardent Co. as a PR manager. Throughout her career, Binaira has handled a diverse range of beats including auto, tech, business, lifestyle, consumer, education, health, social issues, art and culture, and MSME. Outside of work, Binaira enjoys spending time with animals, painting, reading, and cherishing moments at home."
-          />
+          /> */}
           {/* <Person
             name="Charu Pawar"
             image="/team/consultants/charuPawar.jpg"
@@ -231,8 +231,31 @@ Mr. Jai Prakash is an MBA from IIM Lucknow, and had a strong career in the priva
             name="Saptarshi Sanyal"
             image="/team/advisors/10.png"
             position="50% 50%"
-            role="Advisor, Media and Communications"
+            role="Advisor, Media and Communications
+Ex Executive Editor at NDTV Profit"
             des1="Aptarshi Sanyal is a journalist and communicator with 26 years of experience with leading brands like NDTV, CNN-IBN, GMR and JSW. He spent a decade in journalism becoming Executive Editor of NDTV Profit before changing tracks. In a 15-year career in communications, policy and government relations, he has worked for leading corporates along with a six-year stint as an independent consultant. He is currently Director of Uncommon Factor Media Pvt Ltd and works in the areas of corporate communication, reputation management, crisis communications and policy. A background in journalism gives him a wide canvas, however, he has deep domain knowledge in aviation, urban transportation, hospitality and automobile sectors. He has worked across the country but professes a weakness for Mumbai and the Eastern states of India."
+            theme="dark"
+          />
+          <Person
+            name="Sammrat A Dhawan"
+            image="/team/person.jpg"
+            position="50% 50%"
+            des1="Sammrat A Dhawan is a seasoned executive with a two-decade-long career spanning public policy, regulatory affairs, and corporate strategy. He began his career in the Indian government, serving in the Ministry of Commerce & Industry and the Ministry of Finance, where he was instrumental in shaping SEZ frameworks, export-oriented policies, and foreign investment regulations—laying the foundation for his deep regulatory acumen.
+"
+            des2="Transitioning to the private sector, he brought his policy insight to global advisory firms like PwC, KPMG, and RSM, where he advised multinationals on navigating India’s complex regulatory environment across sectors like telecom, pharma, alcobev, and tech. At Pernod Ricard India, he led external affairs for the East Zone, driving regulatory liberalisation and forging key government relationships in the alcobev sector. He has also served as the Vice President and Head of Corporate Affairs at VOIS (Vodafone Intelligent Solutions), where he led policy engagements across data privacy, ESG, AI, and trade regulations, playing a central role in shaping industry narratives through bodies like NASSCOM, CII, and UKIBC."
+            role="Advisor, Government Affairs
+Ex-civil servant; Formerly, Pernod Ricard, Vodafone Intelligence Solutions etc."
+            theme="dark"
+          />
+          <Person
+            name="Bhavani Giddu"
+            image="/team/advisors/8.jpg"
+            position="50% 20%"
+            link="https://www.linkedin.com/in/bhavanigiddu"
+            role="Advisor, Social Development and Education.
+CEO, Footprint Global Communications"
+            des1="Bhavani Giddu is a seasoned professional with over 13 years of experience as the CEO of Footprint Global Communications based in New Delhi, India. In this role, she specializes in strategic communications encompassing internal and external branding, crisis communications, issue management, and communications training workshops. Her expertise extends to strategic media advisory, reputation management, and market research. Prior to leading Footprint Global Communications, Bhavani served as the Head of Office and General Manager at IPAN Hill & Knowlton, overseeing operations in Delhi and Kolkata. "
+            des2="She also held the position of Manager - Communications at GE Industrial and Senior Consultant & Head of Office at Ogilvy & Mather, where she played a key role in heading offices in Hyderabad, Bangalore, and briefly in New Delhi. Bhavani’s educational background includes attending P.S. Senior Secondary School and completing her studies at the University of Madras."
             theme="dark"
           />
           <Person
@@ -263,17 +286,6 @@ Ms. Goel is a Senior Research Fellow and Deputy Director at the India Foundation
             des2="Ms. Goel’s primary focus as a researcher lies in studying the geopolitics of the Indian Ocean Region (IOR) and the impact of development finance on economic sustainability, particularly in IOR countries. With her cross-sectoral experience, Deeksha has worked extensively in various fields including infrastructure, technology, energy security, and food and agriculture sustainability."
             theme="dark"
           /> */}
-          <Person
-            name="Bhavani Giddu"
-            image="/team/advisors/8.jpg"
-            position="50% 20%"
-            link="https://www.linkedin.com/in/bhavanigiddu"
-            role="Advisor, Social Development and Education.
-CEO, Footprint Global Communications"
-            des1="Bhavani Giddu is a seasoned professional with over 13 years of experience as the CEO of Footprint Global Communications based in New Delhi, India. In this role, she specializes in strategic communications encompassing internal and external branding, crisis communications, issue management, and communications training workshops. Her expertise extends to strategic media advisory, reputation management, and market research. Prior to leading Footprint Global Communications, Bhavani served as the Head of Office and General Manager at IPAN Hill & Knowlton, overseeing operations in Delhi and Kolkata. "
-            des2="She also held the position of Manager - Communications at GE Industrial and Senior Consultant & Head of Office at Ogilvy & Mather, where she played a key role in heading offices in Hyderabad, Bangalore, and briefly in New Delhi. Bhavani’s educational background includes attending P.S. Senior Secondary School and completing her studies at the University of Madras."
-            theme="dark"
-          />
           <Person
             name="Varda Taneja"
             image="/team/advisors/9.jpg"
@@ -307,7 +319,8 @@ He is the founding director of The Dialogue think tank, which was established in
             image="/team/person.jpg"
             position="50% 50%"
             link="https://www.linkedin.com/in/proful-lall-2896486/"
-            role="Advisor, Corporate Affairs"
+            role="Advisor, Corporate Affairs
+Formerly, Rapido, ReNew Power AB-InBev"
             des1="Proful Lall is a Corporate Affairs and public affairs specialist with over 20 years of experience in providing strategic advice to senior business leaders on diverse policy and social issues spread across sectors. With more than 15 years in corporate and strategic communications, Proful has held significant positions such as Director of Corporate Affairs and Communications at JTI India, Head of Government Relations at Diageo, Head of Corporate Affairs at ABinBev India, Vice-President at Corporate Affairs at Renew India, and Head of Corporate Affairs at Rapido."
             des2="Mr. Lal excels in his advice on navigating intricate regulatory landscapes, leveraging his extensive knowledge of public policy to shape organizational reputation and drive impactful policy transformations."
             theme="dark"
@@ -319,16 +332,6 @@ He is the founding director of The Dialogue think tank, which was established in
             des1="Mr. Deepak Kumar Sahu is a seasoned strategic communications professional with over 15 years of expertise in journalism, communications, and public relations. As a media professional Mr. Sahu led reporting across sectors for marquee media houses including CNBC TV-18, Zee Media Corporation, Infraline Energy, News Corp VCcircle etc. His extensive experience spans across multiple sectors including energy, metals, fertilizers, pharmaceuticals, banking, commerce, and industries."
             des2=" Mr. Sahu’s versatile background enables him to deliver strategic and effective communication strategies tailored to the specific needs of diverse industries. With his exceptional skills and comprehensive knowledge, he has become a trusted and respected figure in the field of media and public relations."
             role="Advisor, Media and Communications"
-            theme="dark"
-          />
-          <Person
-            name="Sammrat A Dhawan"
-            image="/team/person.jpg"
-            position="50% 50%"
-            des1="Sammrat A Dhawan is a seasoned executive with a two-decade-long career spanning public policy, regulatory affairs, and corporate strategy. He began his career in the Indian government, serving in the Ministry of Commerce & Industry and the Ministry of Finance, where he was instrumental in shaping SEZ frameworks, export-oriented policies, and foreign investment regulations—laying the foundation for his deep regulatory acumen.
-"
-            des2="Transitioning to the private sector, he brought his policy insight to global advisory firms like PwC, KPMG, and RSM, where he advised multinationals on navigating India’s complex regulatory environment across sectors like telecom, pharma, alcobev, and tech. At Pernod Ricard India, he led external affairs for the East Zone, driving regulatory liberalisation and forging key government relationships in the alcobev sector. He has also served as the Vice President and Head of Corporate Affairs at VOIS (Vodafone Intelligent Solutions), where he led policy engagements across data privacy, ESG, AI, and trade regulations, playing a central role in shaping industry narratives through bodies like NASSCOM, CII, and UKIBC."
-            role="Advisor, Government Affairs"
             theme="dark"
           />
 
