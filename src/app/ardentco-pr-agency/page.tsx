@@ -59,14 +59,14 @@ export default function PRHeroWithForm() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
 
           {/* Stat 1 */}
           <div>
             <h2 className="-mt-9 text-5xl lg:text-6xl font-bold text-cyan-400">
               15000+
             </h2>
-            <p className="mt-2 text-3xl text-gray-300">
+            <p className="mt-2 text-2xl text-gray-300">
               media coverages
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function PRHeroWithForm() {
             <h2 className="text-5xl lg:text-6xl font-bold text-cyan-400">
               12M+
             </h2>
-            <p className="mt-2 text-3xl text-gray-300 leading-snug">
+            <p className="mt-2 text-2xl text-gray-300 leading-snug">
               avg readership <br />
               potentially achieved
             </p>
@@ -84,7 +84,7 @@ export default function PRHeroWithForm() {
 
           {/* Stat 3 */}
           <div>
-            <p className="text-lg lg:text-3xl text-cyan-400 font-semibold leading-snug">
+            <p className="text-lg lg:text-2xl text-cyan-400 font-semibold leading-snug">
               across leading healthcare, national and regional news publications
             </p>
           </div>
