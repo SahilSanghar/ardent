@@ -28,6 +28,9 @@ export default function PRForm() {
     try {
       const res = await fetch("/api/pr-client-submit", {
         method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
         body: JSON.stringify(form),
       });
 

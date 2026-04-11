@@ -15,9 +15,9 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(request: NextRequest) {
   const {
-  firstname,
-  lastname,
-  companyname,
+  firstName,
+  lastName,
+  companyName,
   designation,
   phone,
   email,
@@ -33,8 +33,8 @@ export async function POST(request: NextRequest) {
       replyTo: email, // Set reply-to as sender's email
       subject: `Ardent PR Agency Form Submitted by ${email}`,
       text: `
-          Name: ${firstname + " " + lastname}
-  Company: ${companyname}
+          Name: ${firstName + " " + lastName}
+  Company: ${companyName}
   Designation: ${designation}
           Phone: ${phone}
           Email: ${email}
@@ -42,8 +42,8 @@ export async function POST(request: NextRequest) {
         `,
       html: `
           <h1>Ardent PR Agency Form</h1>
-          <p><strong>Name:</strong> ${firstname} ${lastname}</p>
-  <p><strong>Company:</strong> ${companyname}</p>
+          <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+  <p><strong>Company:</strong> ${companyName}</p>
   <p><strong>Designation:</strong> ${designation}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Email:</strong> ${email}</p>
