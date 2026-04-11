@@ -248,7 +248,9 @@ export default function PRHeroWithForm() {
       </h2>
 
       {/* Underline Accent */}
-      <div className="w-16 h-1 mt-6"></div>
+      <div className="w-20 h-[5px] bg-black mt-6 overflow-hidden">
+  <div className="h-full w-0 bg-black"></div>
+</div>
     </div>
 
   </div>
