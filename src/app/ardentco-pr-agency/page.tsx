@@ -1,8 +1,47 @@
 "use client";
 
 import PRForm from "@/app/components/PRForm";
+import { useState, useEffect } from "react";
+
+const testimonials = [
+  {
+    text: `Ardent Co. has been instrumental in strengthening our institutional voice and visibility. Their approach to media relations and thought leadership ensured our clinical expertise reached the right audiences with credibility. The team brings clarity, responsiveness, and a deep understanding of healthcare communications.`,
+    role: "Head – Corporate Communications",
+    company: "Super Speciality Hospital",
+  },
+  {
+    text: `Ardent Co. has been a strong partner in shaping our communication across the multiple hospitality segments we operate in—hostels, affordable, and luxury. They led a comprehensive rebranding communication strategy across all three verticals, while also building foundational media visibility for the group. Their work in positioning us as credible voices in the Indian hospitality industry has added long-term value to our brand narrative.`,
+    role: "Co-Founder",
+    company: "Multi-Vertical Hotel Brand",
+  },
+  {
+    text: `Their strategic communication planning and premium media placements have helped us build a strong narrative in a competitive market in UAE. Ardent Co. demonstrates a clear understanding of luxury positioning and ensures our projects receive the right attention.`,
+    role: "Chief Marketing Officer",
+    company: "Luxury Real Estate Developer",
+  },
+  {
+    text: `As second-generation promoters, we faced challenges in building visibility despite the scale of our operations. Ardent Co. helped bridge this gap through structured media engagement, leadership positioning, and consistent narrative building. Their approach has enabled us to establish a stronger presence across industry and business platforms.`,
+    role: "Head – Strategy & Communications",
+    company: "Primary Metals Manufacturer",
+  },
+  {
+    text: `Ardent Co. has helped us articulate our impact with greater clarity and reach. From building a strong narrative around our programs to driving consistent media visibility, their team understands the sensitivity and responsibility that comes with non-profit communication. Their support in positioning our leadership and amplifying key initiatives has strengthened both awareness and credibility for our work.`,
+    role: "Country Director",
+    company: "Non-Profit Organization",
+  },
+];
 
 export default function PRHeroWithForm() {
+  const [current, setCurrent] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  }, 4000); // change timing here
+
+  return () => clearInterval(interval);
+}, []);
+
   return (
     <>
       {/* HERO SECTION */}
@@ -186,18 +225,36 @@ export default function PRHeroWithForm() {
       </div>
 
       {/* Bottom Content */}
-      <div className="bg-cyan-100 p-10 lg:p-[90px]">
-        <p className="text-gray-800 text-lg leading-relaxed">
-          Their strategic communication planning and premium media placements have helped us build a strong narrative in a competitive market. Ardent Co. demonstrates a clear understanding of luxury positioning and ensures our projects receive the right attention.
-        </p>
+      <div className="bg-cyan-100 p-10 lg:p-[90px] h-full relative overflow-hidden">
 
-        <p className="mt-6 text-lg text-gray-700">
-          Chief Marketing Officer,<br />
-          <span className="font-bold">Luxury Real Estate Developer</span>
-        </p>
+  {/* Slides */}
+  <div className="transition-all duration-700 ease-in-out">
+    <p className="text-gray-800 text-lg leading-relaxed">
+      {testimonials[current].text}
+    </p>
 
-        <p className="mt-4 text-[64px]">.....</p>
-      </div>
+    <p className="mt-6 text-lg text-gray-700">
+      {testimonials[current].role},<br />
+      <span className="font-bold">
+        {testimonials[current].company}
+      </span>
+    </p>
+  </div>
+
+  {/* Dots */}
+  <div className="flex gap-3 mt-8">
+    {testimonials.map((_, index) => (
+      <div
+        key={index}
+        onClick={() => setCurrent(index)}
+        className={`w-3 h-3 rounded-full cursor-pointer transition-all ${
+          current === index ? "bg-black scale-125" : "bg-gray-400"
+        }`}
+      />
+    ))}
+  </div>
+
+</div>
 
     </div>
 
