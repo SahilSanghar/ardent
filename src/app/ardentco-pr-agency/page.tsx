@@ -68,13 +68,13 @@ useEffect(() => {
               Into News
             </h1>
 
-            <p className="mt-6 text-gray-600 text-lg leading-relaxed">
+            <p className="mt-6 mb-6 text-gray-600 text-lg leading-relaxed">
               Ardent Co. is a PR agency in India that turns your story into credible media presence, securing meaningful coverage, company features, leadership narratives, interviews, and high-impact visibility when it matters most.
             </p>
 
-            <button className="mt-6 px-6 py-3 bg-cyan-500 text-white rounded-md">
+            <a href="#contact" className="mt-12 px-6 py-3 bg-cyan-500 text-white rounded-md">
               Get Quote Now
-            </button>
+            </a>
           </div>
         </div>
 
@@ -276,7 +276,7 @@ useEffect(() => {
 </section>
 
 {/* FINAL CTA SECTION (REVERSED HERO) */}
-<section className="min-h-screen grid lg:grid-cols-2">
+<section id="contact" className="min-h-screen grid lg:grid-cols-2">
 
   {/* LEFT SIDE - FORM */}
   <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
