@@ -124,7 +124,7 @@ useEffect(() => {
           {/* Stat 3 */}
           <div>
             <p className="text-lg lg:text-2xl text-cyan-400 font-semibold leading-snug">
-              across leading healthcare, national and regional news publications
+              across leading international, national and regional news publications
             </p>
           </div>
 
