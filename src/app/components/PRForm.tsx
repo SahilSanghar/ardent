@@ -1,26 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState, type ChangeEvent, type FormEvent, type InputHTMLAttributes } from "react";
+
+const initialForm = {
+  firstName: "",
+  lastName: "",
+  companyName: "",
+  designation: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
 export default function PRForm() {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    companyName: "",
-    designation: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
+  const router = useRouter();
+  const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatus("");
@@ -28,26 +31,18 @@ export default function PRForm() {
     try {
       const res = await fetch("/api/pr-client-submit", {
         method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(form),
       });
 
       if (res.ok) {
-        setStatus("Success! We’ll get back to you.");
-        setForm({
-          firstName: "",
-          lastName: "",
-          companyName: "",
-          designation: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
-      } else {
-        setStatus("Something went wrong.");
+        router.replace("/ardentco-pr-agency/success");
+        return;
       }
+
+      setStatus("Something went wrong.");
     } catch (err) {
       setStatus("Network error.");
     }
@@ -56,10 +51,7 @@ export default function PRForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full max-w-md space-y-5"
-    >
+    <form onSubmit={handleSubmit} className="w-full max-w-md space-y-5">
       {/* Name */}
       <div className="grid grid-cols-2 gap-4">
         <Input label="First name" name="firstName" value={form.firstName} onChange={handleChange} />
@@ -112,21 +104,20 @@ export default function PRForm() {
       {/* Button */}
       <button
         type="submit"
-        className="w-full bg-black text-white py-3 rounded-md font-semibold"
+        disabled={loading}
+        className="w-full bg-black text-white py-3 rounded-md font-semibold disabled:cursor-not-allowed disabled:opacity-70"
       >
         {loading ? "Sending..." : "Book a call with us"}
       </button>
 
       {/* Status */}
-      {status && (
-        <p className="text-sm text-center font-medium">{status}</p>
-      )}
+      {status && <p className="text-sm text-center font-medium">{status}</p>}
     </form>
   );
 }
 
 /* Reusable Input */
-function Input({ label, ...props }: any) {
+function Input({ label, ...props }: InputHTMLAttributes<HTMLInputElement> & { label: string }) {
   return (
     <div>
       <label className="text-sm font-semibold text-black mb-1 block">
