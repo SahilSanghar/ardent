@@ -3,6 +3,12 @@
 import { useRouter } from "next/navigation";
 import { useState, type ChangeEvent, type FormEvent, type InputHTMLAttributes } from "react";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 const initialForm = {
   firstName: "",
   lastName: "",
@@ -38,6 +44,12 @@ export default function PRForm() {
       });
 
       if (res.ok) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "lead_form_submit",
+          form: "ardentco-pr-agency",
+        });
+
         router.replace("/ardentco-pr-agency/success");
         return;
       }
