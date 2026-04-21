@@ -335,7 +335,7 @@ Formerly, Rapido, ReNew Power AB-InBev"
             des2="Mr. Lal excels in his advice on navigating intricate regulatory landscapes, leveraging his extensive knowledge of public policy to shape organizational reputation and drive impactful policy transformations."
             theme="dark"
           />
-          <Person
+          {/* <Person
             name="Deepak Kumar Sahu"
             image="/team/advisors/3.jpeg"
             position="50% 20%"
@@ -343,7 +343,7 @@ Formerly, Rapido, ReNew Power AB-InBev"
             des2=" Mr. Sahu’s versatile background enables him to deliver strategic and effective communication strategies tailored to the specific needs of diverse industries. With his exceptional skills and comprehensive knowledge, he has become a trusted and respected figure in the field of media and public relations."
             role="Advisor, Media and Communications"
             theme="dark"
-          />
+          /> */}
 
           {/* <Person
             name="Dr. Sabine Kapasi"
