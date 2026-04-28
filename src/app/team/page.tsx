@@ -273,8 +273,8 @@ CEO, Footprint Global Communications"
             image="/team/advisors/6.jpg"
             position="50% 20%"
             link="https://www.linkedin.com/in/vkwuthoo/"
-            role="Advisor, Strategic Affairs
-Deputy Director and Senior Research Fellow, India Foundation"
+            role="Advisor, Industries and Commerce, 
+            President, India SME Forum"
             des1="Mr. Vinod Kumar is a senior public policy leader and the president of India’s apex industry chamber for the MSME ecosystem, India SME Forum.
 
 As the President of India SME Forum, Mr. Kumar has defined and driven diverse meaningful engagements with Government institutions advocating for the growth and development of small and medium-sized enterprises in India.
