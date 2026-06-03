@@ -32,7 +32,7 @@ export default function ScreenCard({
       className={`w-fit md:h-screen h-[50vh] ${css} flex items-center justify-center flex-col m-auto`}
       // style={{ backgroundImage: `url(${image})` }}
     >
-      <div className="w-fit 2xl:h-[60%] xl:h-[50%] md:h-[40%] h-[30%] mx-auto ">
+      <div className="w-fit 2xl:h-[60%] xl:h-[50%] md:h-[40%] mx-auto ">
         {position == "left" ? (
           <div className="absolute -translate-x-[120%] -translate-y-[25%]  inset-0 w-[20%] h-[40%] m-auto rounded-full bg-gradient-radial from-teal-500 via-transparent to-transparent opacity-50 blur-3xl pointer-events-none bg-ardent bg-opacity-80 -z-10 md:flex hidden"></div>
         ) : (

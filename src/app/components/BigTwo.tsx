@@ -103,7 +103,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
     <>
      
 {pageType !== "pragency" && <Navbar contact={false} />}
-      <div className=" md:h-full h-fit w-full relative">
+      <div className=" md:h-full h-fit w-full">
         {/* lander */}
         <motion.div
           initial={{
@@ -117,7 +117,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
           transition={{
             duration: 0.3,
           }}
-          className={` md:h-screen h-full bg-black -z-10 absolute inset-0 rounded-2xl ${
+          className={` md:h-screen h-[150vh] bg-black -z-10 absolute inset-0 rounded-2xl ${
             loaded ? "blur-0" : "blur-xl"
           }`}
         >
@@ -439,7 +439,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
           id="lander"
           className="relative w-full h-fit min-w-screen min-h-screen bg-white flex xl:flex-row flex-col items-center justify-center"
         >
-          <div className=" h-full bg-black z-10 absolute inset-0">
+          <div className=" md:h-screen h-[200vh] bg-black z-10 absolute inset-0">
             <Image
               src="/texture.jpg"
               alt="texture"
