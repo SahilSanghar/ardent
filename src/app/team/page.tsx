@@ -113,6 +113,25 @@ Sarthak discovered his calling in communications through a complex non-tradition
             position="50% 10%"
             des1="Ekta Sharma is a seasoned professional, skilled in crafting cross-channel branding strategies that deeply resonate with audiences. Her journey artfully blends creativity with strategic prowess, amplifying brand visibility and consistency through dynamic marketing campaigns and media relations. Beyond the boardroom, Ekta is a music maker and an Indian hip-hop culture enthusiast, adding rhythm to both her professional and personal pursuits."
           />
+          <Person
+            name="Nikita Bhardwaj"
+            image="/team/nikita.png"
+            position="50% 50%"
+            link="https://www.linkedin.com/in/nikitabhardwaj95/"
+            role="Manager, Public Relations"
+            des1="Nikita Bhardwaj is a seasoned Corporate Communications and PR professional with over 8 years of experience crafting compelling narratives that drive brand visibility, stakeholder trust, and institutional reputation. Her expertise spans integrated communications strategy, media relations, and sustainability storytelling, seamlessly blending creative thinking with strategic execution to deliver high-impact campaigns across earned, owned, and digital platforms. Beyond the boardroom, she is a sketch artist and avid writer."
+            theme="dark"
+          />
+          <Person
+            name="Gurtej Walia"
+            image="/team/gurtej.png"
+            position="50% 50%"
+            link="https://www.linkedin.com/in/gurtej-walia-8b7985166/"
+            role="Manager, Public Policy"
+            des1="Gurtej Walia is a regulatory and public policy professional specializing in the intersection of government affairs, corporate strategy, and Environmental, Social, and Governance frameworks. With an advanced legal background, Gurtej works with corporate stakeholders to navigate intricate policy shifts, turning regulatory challenges into sustainable business advantages."
+            des2="Throughout his career, Gurtej has designed and executed high-stakes advocacy strategies, working closely with key government ministries and policy bodies. Notably, they have spearheaded complex stakeholder engagements for GST rate rationalization, developed comprehensive policy briefs for government committees, and managed public policy strategies t"
+            theme="dark"
+          />
 
           {/* <Person
             name="Manya Singh"
@@ -181,7 +200,7 @@ Sarthak discovered his calling in communications through a complex non-tradition
             des1="Advitiya Singh is a research and communications professional whose work brings together strategy, storytelling, stakeholder coordination, and cross functional execution. At Ardent Co., she works across strategy, research-led storytelling, media-facing narratives, and thought leadership for clients across sectors. Her work is shaped by strong research, clear writing, and the ability to move smoothly between ideas, people, and delivery in fast-moving environments."
             des2="Before joining Ardent, Advitiya worked with TEDxGateway and EDGE Community in cross-functional roles spanning content, research, stakeholder coordination, and execution. At TEDxGateway, she worked on speaker discovery and early curation across science, technology, design, culture, philosophy, and public policy, supporting research, exploratory conversations, and internal curation processes.<br><br>At EDGE Community, she worked as a generalist across content, community management, communications, stakeholder coordination, and events for a curated network of entrepreneurs, executives, scientists, and policymakers. She also supported outreach and stakeholder liaison for WAVES 2025, including coordination connected with the Ministry of Information and Broadcasting.<br><br>Earlier, at EY, she worked across writing, editing, and research support, contributing to white papers, reports, business-focused content, and internal knowledge work with a strong eye for structure and quality. Her experience at the Public Policy Research Centre added a policy lens to her profile, where she supported parliamentary briefs, manifesto reviews, issue-based research, SOPs, and RTI-related work.<br><br>Across roles, Advitiya brings a strong editorial instinct, interdisciplinary curiosity, and the ability to move smoothly between research, communication, and coordination. Her professional style is marked by clarity, dependability, and a rare ability to bring research, narrative, and execution together with equal ease."
           />
-          <Person
+          {/* <Person
             name="Debjyoti Samaddar
 "
             image="/team/consultants/debjyoti.jpeg"
@@ -193,7 +212,7 @@ Sarthak discovered his calling in communications through a complex non-tradition
             des1="Debjyoti Samaddar is a law and policy professional with interdisciplinary experience across legislative research, regulatory analysis, corporate law, arbitration, and public policy. A graduate of Dr. Ram Manohar Lohiya National Law University, Lucknow, he combines legal research with governance oriented policy analysis, with a growing focus on institutional design, regulatory reform, and public law frameworks."
             des2="His experience spans legislative and policy engagement through internships with the Office of a Member of Parliament, where he contributed to legal and policy research supporting parliamentary functions including Question Hour, Zero Hour interventions, Special Mentions, and policy research. His policy exposure also includes work with the Vidhi Centre for Legal Policy, where he contributed to regulatory and governance reforms across municipal law, corporate regulation, and financial frameworks. This involved proposing reforms to Rajasthan’s municipal governance framework with emphasis on fiscal autonomy, participatory budgeting, and digitization, alongside comparative legal research across global jurisdictions.<br><br>Debjyoti has engaged extensively with technology and regulatory policy, including work within the Compliance Think Tank at Dhir & Dhir Associates in college, contributing to comparative analysis of global AI governance frameworks and assisting in policy recommendations that culminated in the publication AI For Good: India and Beyond. <br><br>In addition to professional engagements, Debjyoti has contributed to academic discourse through publications on environmental governance and public participation in lawmaking. 
 <br><br>With a foundation rooted in legal scholarship and practical policy exposure, Debjyoti, as the Junior Associate - Research and Content, continues to develop expertise at the intersection of law, governance, and institutional reform, combining analytical rigour with research-driven policymaking perspectives with Ardent Co."
-          />
+          /> */}
            <Person
             name="Meghna Juneja"
             image="/team/consultants/meghna.jpeg"
@@ -324,6 +343,17 @@ He is the founding director of The Dialogue think tank, which was established in
             des2="At The Dialogue, Kaizen aims to contribute to the creation of a progressive policy ecosystem in India through intellectual discussions and innovative solutions. Kazim is also a prolific writer and has contributed to significant policy discussions including the Digital Personal Data Protection Bill, Competition Regulations for Technology Enterprises, Satellite Internet Communications to name a few."
             theme="dark"
           /> */}
+          <Person
+            name="Proful Lall"
+            image="/team/person.jpg"
+            position="50% 50%"
+            link="https://www.linkedin.com/in/proful-lall-2896486/"
+            role="Advisor, Corporate Affairs
+Formerly, Rapido, ReNew Power AB-InBev"
+            des1="Proful Lall is a Corporate Affairs and public affairs specialist with over 20 years of experience in providing strategic advice to senior business leaders on diverse policy and social issues spread across sectors. With more than 15 years in corporate and strategic communications, Proful has held significant positions such as Director of Corporate Affairs and Communications at JTI India, Head of Government Relations at Diageo, Head of Corporate Affairs at ABinBev India, Vice-President at Corporate Affairs at Renew India, and Head of Corporate Affairs at Rapido."
+            des2="Mr. Lal excels in his advice on navigating intricate regulatory landscapes, leveraging his extensive knowledge of public policy to shape organizational reputation and drive impactful policy transformations."
+            theme="dark"
+          />
           <Person
             name="Proful Lall"
             image="/team/person.jpg"
