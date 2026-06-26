@@ -354,17 +354,6 @@ Formerly, Rapido, ReNew Power AB-InBev"
             des2="Mr. Lal excels in his advice on navigating intricate regulatory landscapes, leveraging his extensive knowledge of public policy to shape organizational reputation and drive impactful policy transformations."
             theme="dark"
           />
-          <Person
-            name="Proful Lall"
-            image="/team/person.jpg"
-            position="50% 50%"
-            link="https://www.linkedin.com/in/proful-lall-2896486/"
-            role="Advisor, Corporate Affairs
-Formerly, Rapido, ReNew Power AB-InBev"
-            des1="Proful Lall is a Corporate Affairs and public affairs specialist with over 20 years of experience in providing strategic advice to senior business leaders on diverse policy and social issues spread across sectors. With more than 15 years in corporate and strategic communications, Proful has held significant positions such as Director of Corporate Affairs and Communications at JTI India, Head of Government Relations at Diageo, Head of Corporate Affairs at ABinBev India, Vice-President at Corporate Affairs at Renew India, and Head of Corporate Affairs at Rapido."
-            des2="Mr. Lal excels in his advice on navigating intricate regulatory landscapes, leveraging his extensive knowledge of public policy to shape organizational reputation and drive impactful policy transformations."
-            theme="dark"
-          />
           {/* <Person
             name="Deepak Kumar Sahu"
             image="/team/advisors/3.jpeg"
