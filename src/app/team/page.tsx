@@ -5,6 +5,7 @@ import Navbar from "../components/ui/Navbar";
 import Lander from "../components/ui/Lander";
 import Person from "../components/ui/Person";
 import Footer from "../components/ui/Footer";
+import Contact from "../components/ui/Contact";
 // import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -379,6 +380,11 @@ Dr. Kapasi has specialized in In-Vitro Fertilization (IVF) and has gained recogn
           /> */}
         </div>
       </div>
+
+      <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
+        <Contact track={false} />
+      </section>
+
       <Footer theme={"dark"} />
     </>
   );

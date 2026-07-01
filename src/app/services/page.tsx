@@ -3,6 +3,7 @@ import Enable from "../components/ui/Enable";
 import Lander from "../components/ui/Lander";
 import Navbar from "../components/ui/Navbar";
 import Footer from "../components/ui/Footer";
+import Contact from "../components/ui/Contact";
 
 export default function page() {
   return (
@@ -18,6 +19,11 @@ export default function page() {
       <div className="relative flex w-full  h-full" id="more">
         <Enable />
       </div>
+
+      <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
+        <Contact track={false} />
+      </section>
+
       <Footer theme="dark" />
     </>
   );

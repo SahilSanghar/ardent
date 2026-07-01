@@ -9,6 +9,7 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Button from "../components/ui/button";
 import { useRouter } from "next/navigation";
+import Contact from "../components/ui/Contact";
 // import { motion } from "framer-motion";
 
 export default function Page() {
@@ -457,6 +458,10 @@ export default function Page() {
           </div>
         </section>
       )}
+
+      <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
+        <Contact track={false} />
+      </section>
 
       <Footer theme="dark" />
     </>

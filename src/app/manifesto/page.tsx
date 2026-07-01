@@ -7,6 +7,7 @@ import Footer from "../components/ui/Footer";
 import { motion } from "framer-motion";
 import Lander from "../components/ui/Lander";
 import Image from "next/image";
+import Contact from "../components/ui/Contact";
 
 export default function Home() {
   // const messages = [
@@ -352,6 +353,10 @@ export default function Home() {
           </motion.div>
         </div>
       </div>
+
+      <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
+        <Contact track={false} />
+      </section>
 
       <Footer theme="dark" />
     </>

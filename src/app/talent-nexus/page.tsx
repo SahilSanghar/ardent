@@ -9,6 +9,7 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 // import Options from "../components/ui/Options";
 import OptionsFull from "../components/ui/OptionsFull";
+import Contact from "../components/ui/Contact";
 
 export default function Page() {
   const content = [
@@ -189,6 +190,10 @@ export default function Page() {
             <OptionsFull content={content} />
           </div>
         </div>
+      </section>
+
+      <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
+        <Contact track={false} />
       </section>
 
       <Footer theme={"dark"} />

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FormEvent, useEffect, useState } from "react";
 import { easeInOut, motion } from "framer-motion";
 import axios from "axios";
@@ -23,9 +25,10 @@ interface FormData {
 
 interface Props {
   client?: boolean;
+  track?: boolean;
 }
 
-export default function Contact({ client }: Props) {
+export default function Contact({ client, track = true }: Props) {
   const [clicked, setClicked] = useState(client ? true : false);
   const [clicked1, setClicked1] = useState(false);
   const [zindex, setZindex] = useState("z-0");
@@ -74,12 +77,13 @@ export default function Contact({ client }: Props) {
       // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-unused-vars
       .then((response) => {
         setStatus("Email sent successfully!");
-        // ✅ ADD THIS (GTM EVENT)
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: "lead_form_submit",
-    form: "public-relation"
-  });
+        if (track) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "lead_form_submit",
+            form: "public-relation",
+          });
+        }
         // Reset form
         setFormData((prev) => ({
           ...prev,

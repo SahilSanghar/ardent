@@ -172,7 +172,7 @@ export default function Page() {
       />
 
       <section id="contact" className="bg-white overflow-hidden">
-        <Contact client={true} />
+        <Contact track={false} />
       </section>
 
       <section

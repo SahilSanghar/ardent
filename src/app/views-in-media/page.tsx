@@ -2,6 +2,7 @@ import React from "react";
 import Lander from "../components/ui/Lander";
 import Navbar from "../components/ui/Navbar";
 import InfoCard from "../components/ui/InfoCard";
+import Contact from "../components/ui/Contact";
 
 export default function page() {
   return (
@@ -62,6 +63,10 @@ export default function page() {
           />
         </div>
       </div>
+
+      <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
+        <Contact track={false} />
+      </section>
     </>
   );
 }

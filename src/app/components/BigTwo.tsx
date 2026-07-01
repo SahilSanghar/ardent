@@ -5,6 +5,7 @@ import Image from "next/image";
 import Navbar from "@/app/components/ui/Navbar";
 import axios from "axios";
 import { motion } from "framer-motion";
+import Contact from "@/app/components/ui/Contact";
 
 interface BigTwoProps {
   realestate?: boolean;
@@ -851,6 +852,10 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
                   </motion.div>
                 ))}
           </div>
+        </section>
+
+        <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
+          <Contact track={false} />
         </section>
       </div>
     </>

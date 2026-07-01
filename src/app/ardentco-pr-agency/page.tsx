@@ -1,6 +1,7 @@
 "use client";
 
 import PRForm from "@/app/components/PRForm";
+import Contact from "@/app/components/ui/Contact";
 import { useState, useEffect } from "react";
 
 const testimonials = [
@@ -313,6 +314,10 @@ useEffect(() => {
   </div>
 
 </section>
+
+      <section className="relative bg-white flex w-full min-h-screen h-fit" id="ardent-contact">
+        <Contact track={false} />
+      </section>
     </>
   );
 }
