@@ -189,7 +189,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
   </>
 ) : pageType === "pragency" ? (
   <>
-    That Gets <br />You in the <br />
+    That Gets You in the <br />
     <span className="text-ardent">News</span>
   </>
 ) : (
@@ -578,7 +578,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
   pageType === "healthcare"
     ? "/healthcare#home"
     : pageType === "pragency"
-    ? "/pr-agency#home"
+    ? "/pr-agency#contact"
     : "/realestate#home"
 }
                   className="font-bold xl:text-xl md:text-base text-sm border-2 ml-3 border-red-600 bg-yellow-500 rounded-full md:px-5 px-3 py-1 mt-3 md:mt-0"
@@ -780,7 +780,7 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
   pageType === "healthcare"
     ? "/healthcare#home"
     : pageType === "pragency"
-    ? "/pr-agency#home"
+    ? "/pr-agency#contact"
     : "/realestate#home"
 }
               className="font-bold xl:text-xl md:text-base text-sm border-2 md:ml-5 ml-0 border-red-600 bg-yellow-500 rounded-full md:px-5 px-3 py-1 mt-3 md:mt-0 text-black"
