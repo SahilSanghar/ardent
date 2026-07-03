@@ -157,7 +157,13 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
             className="flex md:h-full h-fit mt-24 md:mt-0 md:flex-row flex-col items-center justify-center w-full"
           >
             <div className="w-full h-full min-w-screen flex flex-col items-center justify-center">
-              <div className="w-[60%] h-full gap-10 flex flex-col  justify-center">
+              <div
+                className={`h-full gap-10 flex flex-col justify-center ${
+                  pageType === "pragency"
+                    ? "w-full max-w-3xl mx-auto text-center items-center"
+                    : "w-[60%]"
+                }`}
+              >
                 <p className="text-white md:text-2xl xl:text-4xl text-2xl font-bold">
                   {pageType === "healthcare" ? (
   <>
@@ -195,8 +201,16 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
 )}
                 </p>
 
-                <div className="flex flex-col gap-3 mt-10">
-                  <div className="w-1/2 xl:h-[0.2rem] md:h-[0.1rem] h-[0.1rem] bg-white"></div>
+                <div
+                  className={`flex flex-col gap-3 mt-10 ${
+                    pageType === "pragency" ? "items-center" : ""
+                  }`}
+                >
+                  <div
+                    className={`xl:h-[0.2rem] md:h-[0.1rem] h-[0.1rem] bg-white ${
+                      pageType === "pragency" ? "w-1/4" : "w-1/2"
+                    }`}
+                  ></div>
 
                   <p className="xl:text-base md:text-sm text-sm text-white">
                     {pageType === "healthcare" ? (
@@ -221,92 +235,94 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
                 </div>
               </div>
             </div>
-            <div className="w-full h-full min-w-screen flex items-center justify-center md:mt-0 mt-10">
-              <div className="xl:w-[60%] md:w-[70%] w-[70%] h-fit flex md:p-10 p-5 bg-white/50 backdrop-blur-sm border-2 border-ardent rounded-xl justify-center items-center">
-                <form
-  className="w-full h-fit flex flex-col md:gap-6 gap-4 text-white md:text-base text-sm"
-  onSubmit={onSubmit}
->
-  {/* Row 1 — Name */}
-  <input
-    type="text"
-    name="name"
-    required
-    value={formData.name}
-    onChange={handleChange}
-    className="w-full h-10 rounded-full px-5 bg-black/50"
-    placeholder="Name"
-  />
-
-  {/* Row 2 — Company Name + Email */}
-  <div className="flex gap-4">
-    <input
-      type="text"
-      name="company"
-      required
-      value={formData.company}
-      onChange={handleChange}
-      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
-      placeholder="Company Name"
-    />
-
-    <input
-      type="email"
-      name="email"
-      required
-      value={formData.email}
-      onChange={handleChange}
-      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
-      placeholder="Company Email"
-    />
-  </div>
-
-  {/* Row 3 — Phone + Designation */}
-  <div className="flex gap-4">
-    <input
-      type="tel"
-      name="phone"
-      required
-      value={formData.phone}
-      onChange={handleChange}
-      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
-      placeholder="Phone"
-    />
-
-    <input
-      type="text"
-      name="designation"
-      required
-      value={formData.designation}
-      onChange={handleChange}
-      className="w-1/2 h-10 rounded-full px-5 bg-black/50"
-      placeholder="Designation"
-    />
-  </div>
-
-  {/* Row 4 — Message */}
-  <textarea
-    value={formData.message}
-    name="message"
-    onChange={handleChange}
-    className="w-full rounded-xl p-5 bg-black/50"
-    placeholder="Message (optional)"
-  />
-
-  {/* Button */}
-  <button
-    type="submit"
-    className="w-full p-3 rounded-full font-bold bg-ardent text-black border-2 border-black"
+            {pageType !== "pragency" && (
+              <div className="w-full h-full min-w-screen flex items-center justify-center md:mt-0 mt-10">
+                <div className="xl:w-[60%] md:w-[70%] w-[70%] h-fit flex md:p-10 p-5 bg-white/50 backdrop-blur-sm border-2 border-ardent rounded-xl justify-center items-center">
+                  <form
+    className="w-full h-fit flex flex-col md:gap-6 gap-4 text-white md:text-base text-sm"
+    onSubmit={onSubmit}
   >
-    {formData.loading
-      ? "Sending..."
-      : formData.success
-      ? "Sent successfully!"
-      : "Book A Strategy Call Now"}
-  </button>
-</form>
+    {/* Row 1 — Name */}
+    <input
+      type="text"
+      name="name"
+      required
+      value={formData.name}
+      onChange={handleChange}
+      className="w-full h-10 rounded-full px-5 bg-black/50"
+      placeholder="Name"
+    />
+
+    {/* Row 2 — Company Name + Email */}
+    <div className="flex gap-4">
+      <input
+        type="text"
+        name="company"
+        required
+        value={formData.company}
+        onChange={handleChange}
+        className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+        placeholder="Company Name"
+      />
+
+      <input
+        type="email"
+        name="email"
+        required
+        value={formData.email}
+        onChange={handleChange}
+        className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+        placeholder="Company Email"
+      />
+    </div>
+
+    {/* Row 3 — Phone + Designation */}
+    <div className="flex gap-4">
+      <input
+        type="tel"
+        name="phone"
+        required
+        value={formData.phone}
+        onChange={handleChange}
+        className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+        placeholder="Phone"
+      />
+
+      <input
+        type="text"
+        name="designation"
+        required
+        value={formData.designation}
+        onChange={handleChange}
+        className="w-1/2 h-10 rounded-full px-5 bg-black/50"
+        placeholder="Designation"
+      />
+    </div>
+
+    {/* Row 4 — Message */}
+    <textarea
+      value={formData.message}
+      name="message"
+      onChange={handleChange}
+      className="w-full rounded-xl p-5 bg-black/50"
+      placeholder="Message (optional)"
+    />
+
+    {/* Button */}
+    <button
+      type="submit"
+      className="w-full p-3 rounded-full font-bold bg-ardent text-black border-2 border-black"
+    >
+      {formData.loading
+        ? "Sending..."
+        : formData.success
+        ? "Sent successfully!"
+        : "Book A Strategy Call Now"}
+    </button>
+  </form>
+                </div>
               </div>
-            </div>
+            )}
           </motion.div>
           <motion.div
             initial={{
