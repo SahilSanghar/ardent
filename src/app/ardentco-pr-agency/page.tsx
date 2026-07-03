@@ -1,6 +1,6 @@
 "use client";
 
-import PRForm from "@/app/components/PRForm";
+// import PRForm from "@/app/components/PRForm";
 import Contact from "@/app/components/ui/Contact";
 import { useState, useEffect } from "react";
 
@@ -46,10 +46,10 @@ useEffect(() => {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="min-h-screen grid lg:grid-cols-2 bg-[#f5f5f5]">
-        
-        {/* LEFT SIDE - VIDEO + TEXT */}
-        <div className="relative flex items-center justify-center p-10 overflow-hidden">
+      <section className="min-h-screen flex bg-[#f5f5f5]">
+
+        {/* VIDEO + TEXT */}
+        <div className="relative flex items-center justify-center p-10 overflow-hidden w-full">
           {/* 🎥 Background Video */}
   <video
     autoPlay
@@ -62,7 +62,7 @@ useEffect(() => {
   </video>
 
           {/* Content */}
-          <div className="relative z-10 max-w-xl">
+          <div className="relative z-10 max-w-2xl mx-auto text-center">
             <h1 className="font-serif text-5xl lg:text-6xl leading-tight text-black">
               Turning <br />
               <span className="text-cyan-500">Your Story</span> <br />
@@ -79,10 +79,10 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* RIGHT SIDE - FORM */}
-        <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
+        {/* RIGHT SIDE - FORM (disabled, see #ardent-contact form at bottom) */}
+        {/* <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
           <PRForm />
-        </div>
+        </div> */}
       </section>
 
       {/* 🔥 STATS SECTION (CONTINUES BELOW) */}
@@ -277,15 +277,15 @@ useEffect(() => {
 </section>
 
 {/* FINAL CTA SECTION (REVERSED HERO) */}
-<section id="contact" className="min-h-screen grid lg:grid-cols-2">
+<section id="contact" className="min-h-screen flex">
 
-  {/* LEFT SIDE - FORM */}
-  <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
+  {/* LEFT SIDE - FORM (disabled, see #ardent-contact form at bottom) */}
+  {/* <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
     <PRForm />
-  </div>
+  </div> */}
 
-  {/* RIGHT SIDE - TEXT */}
-  <div className="relative flex items-center justify-center p-10 overflow-hidden">
+  {/* TEXT */}
+  <div className="relative flex items-center justify-center p-10 overflow-hidden w-full">
 {/* 🎥 Background Video */}
   <video
     autoPlay
@@ -298,7 +298,7 @@ useEffect(() => {
   </video>
 
     {/* Content */}
-    <div className="relative z-10 max-w-xl text-left">
+    <div className="relative z-10 max-w-2xl mx-auto text-center">
       <h2 className="font-serif text-5xl lg:text-6xl leading-tight text-black">
         Let’s Get <br />
         <span className="text-cyan-500">Your Story</span> <br />
@@ -306,7 +306,7 @@ useEffect(() => {
       </h2>
 
       {/* Underline Accent */}
-      <div className="w-20 h-[5px] bg-black mt-6 overflow-hidden">
+      <div className="w-20 h-[5px] bg-black mt-6 overflow-hidden mx-auto">
   <div className="h-full w-0 bg-black"></div>
 </div>
     </div>
