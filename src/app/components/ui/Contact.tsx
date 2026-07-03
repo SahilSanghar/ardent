@@ -26,9 +26,16 @@ interface FormData {
 interface Props {
   client?: boolean;
   track?: boolean;
+  apiEndpoint?: string;
+  successUrl?: string;
 }
 
-export default function Contact({ client, track = true }: Props) {
+export default function Contact({
+  client,
+  track = true,
+  apiEndpoint = "/api/ClientSubmit",
+  successUrl = "/success",
+}: Props) {
   const [clicked, setClicked] = useState(client ? true : false);
   const [clicked1, setClicked1] = useState(false);
   const [zindex, setZindex] = useState("z-0");
@@ -64,16 +71,28 @@ export default function Contact({ client, track = true }: Props) {
     setStatus("");
     setIsSubmitting(true);
 
+    const payload =
+      apiEndpoint === "/api/ClientSubmit"
+        ? {
+            firstname: formData.firstName,
+            lastname: formData.lastName,
+            companyname: formData.companyName,
+            designation: formData.designation,
+            phone: formData.phone,
+            email: formData.email,
+            message: formData.message,
+          }
+        : {
+            name: `${formData.firstName} ${formData.lastName}`.trim(),
+            company: formData.companyName,
+            designation: formData.designation,
+            phone: formData.phone,
+            email: formData.email,
+            message: formData.message,
+          };
+
     axios
-      .post("/api/ClientSubmit", {
-        firstname: formData.firstName,
-        lastname: formData.lastName,
-        companyname: formData.companyName,
-        designation: formData.designation,
-        phone: formData.phone,
-        email: formData.email,
-        message: formData.message,
-      })
+      .post(apiEndpoint, payload)
       // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-unused-vars
       .then((response) => {
         setStatus("Email sent successfully!");
@@ -96,7 +115,7 @@ export default function Contact({ client, track = true }: Props) {
           message: "",
         }));
 
-  router.replace("/success");
+  router.replace(successUrl);
       })
       .catch((error) => {
         setStatus("Network error. Please try again.");

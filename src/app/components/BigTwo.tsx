@@ -871,7 +871,23 @@ export default function BigTwo({ realestate, healthcare, pragency }: BigTwoProps
         </section>
 
         <section className="relative bg-white flex w-full min-h-screen h-fit" id="contact">
-          <Contact track={false} />
+          <Contact
+            track={false}
+            apiEndpoint={
+              pragency
+                ? "/api/pragency"
+                : healthcare
+                ? "/api/healthcare"
+                : "/api/realestate"
+            }
+            successUrl={
+              pragency
+                ? "/pr-agency/success"
+                : healthcare
+                ? "/healthcare/success"
+                : "/realestate/success"
+            }
+          />
         </section>
       </div>
     </>
