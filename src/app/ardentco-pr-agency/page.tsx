@@ -277,7 +277,7 @@ useEffect(() => {
 </section>
 
 {/* FINAL CTA SECTION (REVERSED HERO) */}
-<section id="contact" className="min-h-screen flex">
+<section id="contact" className="min-h-[30vh] flex">
 
   {/* LEFT SIDE - FORM (disabled, see #ardent-contact form at bottom) */}
   {/* <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
