@@ -316,7 +316,11 @@ useEffect(() => {
 </section>
 
       <section className="relative bg-white flex w-full min-h-screen h-fit" id="ardent-contact">
-        <Contact track={false} />
+        <Contact
+          track={false}
+          apiEndpoint="/api/pr-client-submit"
+          successUrl="/ardentco-pr-agency/success"
+        />
       </section>
     </>
   );

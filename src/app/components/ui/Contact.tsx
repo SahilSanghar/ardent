@@ -82,6 +82,16 @@ export default function Contact({
             email: formData.email,
             message: formData.message,
           }
+        : apiEndpoint === "/api/pr-client-submit"
+        ? {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            companyName: formData.companyName,
+            designation: formData.designation,
+            phone: formData.phone,
+            email: formData.email,
+            message: formData.message,
+          }
         : {
             name: `${formData.firstName} ${formData.lastName}`.trim(),
             company: formData.companyName,
