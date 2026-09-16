@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Playfair_Display } from "next/font/google";
@@ -53,6 +53,19 @@ useEffect(() => {
 
   const router = useRouter();
   const [formMode, setFormMode] = useState<"client" | "job">("client");
+  const [showContactSection, setShowContactSection] = useState(false);
+  const contactSectionRef = useRef<HTMLElement>(null);
+
+  const openContactSection = (mode: "client" | "job") => {
+    setFormMode(mode);
+    setShowContactSection(true);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        contactSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  };
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState("");
   const [formData, setFormData] = useState({
@@ -164,9 +177,13 @@ useEffect(() => {
               Ardent Co. is a PR agency in India that turns your story into credible media presence, securing meaningful coverage, company features, leadership narratives, interviews, and high-impact visibility when it matters most.
             </p>
 
-            <a href="#contact" className="inline-block px-6 py-3 bg-blue-800 text-white rounded-md font-semibold hover:bg-blue-900 transition">
+            <button
+              type="button"
+              onClick={() => openContactSection("client")}
+              className="inline-block px-6 py-3 bg-blue-800 text-white rounded-md font-semibold hover:bg-blue-900 transition"
+            >
               Get Quote Now
-            </a>
+            </button>
           </div>
         </div>
 
@@ -364,22 +381,22 @@ useEffect(() => {
 
     {/* BUTTONS */}
     <div className="flex flex-wrap gap-4">
-      <a
-        href="#contact"
-        onClick={() => setFormMode("client")}
+      <button
+        type="button"
+        onClick={() => openContactSection("client")}
         className="flex items-center justify-between gap-6 px-6 py-3 rounded-md bg-blue-800 text-white font-bold hover:opacity-90 transition"
       >
         I am a client
         <img src="/arrow-blue.png" alt="" className="size-8" />
-      </a>
-      <a
-        href="#contact"
-        onClick={() => setFormMode("job")}
+      </button>
+      <button
+        type="button"
+        onClick={() => openContactSection("job")}
         className="flex items-center justify-between gap-6 px-6 py-3 rounded-md border-2 border-blue-800 bg-white text-black font-bold hover:opacity-90 transition"
       >
         Work with us?
         <img src="/arrow-white.png" alt="" className="size-8" />
-      </a>
+      </button>
     </div>
 
   </div>
@@ -387,7 +404,8 @@ useEffect(() => {
 </section>
 
 {/* FINAL CTA + CONTACT FORM SECTION */}
-<section id="contact" className="relative w-full bg-white overflow-hidden">
+{showContactSection && (
+<section id="contact" ref={contactSectionRef} className="relative w-full bg-white overflow-hidden">
 
   {/* Blue background shape */}
   <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[55%] bg-blue-800 rounded-tl-[140px] rounded-bl-[140px]"></div>
@@ -659,6 +677,7 @@ useEffect(() => {
   </div>
 
 </section>
+)}
     </>
   );
 }
