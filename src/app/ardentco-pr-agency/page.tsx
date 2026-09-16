@@ -1,8 +1,16 @@
 "use client";
 
-// import PRForm from "@/app/components/PRForm";
-import Contact from "@/app/components/ui/Contact";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { Playfair_Display } from "next/font/google";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 const testimonials = [
   {
@@ -43,92 +51,156 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
+  const router = useRouter();
+  const [formMode, setFormMode] = useState<"client" | "job">("client");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    designation: "",
+    email: "",
+    phone: "",
+    message: "",
+    department: "",
+    cv: null as File | null,
+  });
+
+  const handleInputChange = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleClientSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("");
+    setIsSubmitting(true);
+
+    try {
+      await axios.post("/api/pr-client-submit", {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        companyName: formData.companyName,
+        designation: formData.designation,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+      });
+      router.replace("/ardentco-pr-agency/success");
+    } catch (err) {
+      setStatus("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleJobSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("");
+
+    if (formData.cv && formData.cv.size > 4 * 1024 * 1024) {
+      setStatus("File size exceeds 4MB limit.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("firstName", formData.firstName);
+    formDataToSend.append("lastName", formData.lastName);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("department", formData.department);
+    if (formData.cv) {
+      formDataToSend.append("cv", formData.cv);
+    }
+
+    try {
+      await axios.post("/api/JobSubmit", formDataToSend);
+      setStatus("Application sent successfully!");
+      setFormData((prev) => ({
+        ...prev,
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        department: "",
+        cv: null,
+      }));
+    } catch (err) {
+      setStatus("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       {/* HERO SECTION */}
-      <section className="min-h-screen flex bg-[#f5f5f5]">
+      <section className="min-h-screen flex flex-col md:flex-row bg-[#f5f5f5]">
 
-        {/* VIDEO + TEXT */}
-        <div className="relative flex items-center justify-center p-10 overflow-hidden w-full">
+        {/* LEFT: VIDEO + TEXT */}
+        <div className="relative flex items-center p-14 md:p-16 overflow-hidden w-full md:w-1/2 min-h-[60vh] md:min-h-screen">
           {/* 🎥 Background Video */}
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover"
-  >
-    <source src="/vid-bg.mp4" type="video/mp4" />
-  </video>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/vid-bg.mp4" type="video/mp4" />
+          </video>
 
           {/* Content */}
-          <div className="relative z-10 max-w-2xl mx-auto text-center">
-            <h1 className="font-serif text-5xl lg:text-6xl leading-tight text-black">
+          <div className="relative z-10 max-w-xl">
+            <h1 className={`${playfair.className} text-5xl lg:text-6xl leading-tight text-black`}>
               Turning <br />
-              <span className="text-cyan-500">Your Story</span> <br />
+              <span className="text-blue-800 font-black">Your Story</span> <br />
               Into News
             </h1>
 
-            <p className="mt-6 mb-6 text-gray-600 text-lg leading-relaxed">
+            <p className="mt-6 mb-8 text-gray-700 text-lg leading-relaxed">
               Ardent Co. is a PR agency in India that turns your story into credible media presence, securing meaningful coverage, company features, leadership narratives, interviews, and high-impact visibility when it matters most.
             </p>
 
-            <a href="#contact" className="mt-12 px-6 py-3 bg-cyan-500 text-white rounded-md">
+            <a href="#contact" className="inline-block px-6 py-3 bg-blue-800 text-white rounded-md font-semibold hover:bg-blue-900 transition">
               Get Quote Now
             </a>
           </div>
         </div>
 
-        {/* RIGHT SIDE - FORM (disabled, see #ardent-contact form at bottom) */}
-        {/* <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
-          <PRForm />
-        </div> */}
-      </section>
+        {/* RIGHT: STATS ON BLUE */}
+        <div className="relative flex items-center w-full md:w-1/2 min-h-[40vh] md:min-h-screen bg-blue-800 px-10 md:px-16 py-16">
+          <div className="flex flex-col gap-10">
 
-      {/* 🔥 STATS SECTION (CONTINUES BELOW) */}
-      <section className="relative w-full py-20 text-white overflow-hidden">
+            {/* Stat 1 */}
+            <div>
+              <h2 className="text-6xl lg:text-7xl font-black text-blue-200">
+                15000+
+              </h2>
+              <p className="mt-2 text-2xl text-white">
+                media <br/> coverages
+              </p>
+            </div>
 
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="/number-bg.jpeg"
-            alt="background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/10"></div>
-        </div>
+            {/* Stat 2 */}
+            <div>
+              <h2 className="text-6xl lg:text-7xl font-black text-blue-200">
+                12M+
+              </h2>
+              <p className="mt-2 text-2xl text-white leading-snug">
+                avg readership <br />
+                potentially achieved
+              </p>
+            </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
-
-          {/* Stat 1 */}
-          <div>
-            <h2 className="-mt-9 text-5xl lg:text-6xl font-bold text-cyan-400">
-              15000+
-            </h2>
-            <p className="mt-2 text-2xl text-gray-300">
-              media coverages
+            {/* Stat 3 */}
+            <p className={`${playfair.className} text-xl lg:text-2xl text-white font-bold leading-snug`}>
+              across leading international, <br/>national and regional news <br/>publications
             </p>
-          </div>
 
-          {/* Stat 2 */}
-          <div>
-            <h2 className="text-5xl lg:text-6xl font-bold text-cyan-400">
-              12M+
-            </h2>
-            <p className="mt-2 text-2xl text-gray-300 leading-snug">
-              avg readership <br />
-              potentially achieved
-            </p>
           </div>
-
-          {/* Stat 3 */}
-          <div>
-            <p className="text-lg lg:text-2xl text-cyan-400 font-semibold leading-snug">
-              across leading international, national and regional news publications
-            </p>
-          </div>
-
         </div>
       </section>
 
@@ -137,7 +209,7 @@ useEffect(() => {
   <div className="max-w-6xl mx-auto px-6">
 
     {/* Heading */}
-    <h2 className="text-4xl lg:text-5xl font-serif text-black mb-12">
+    <h2 className={`${playfair.className} text-4xl lg:text-5xl text-blue-800 mb-12`}>
       Our Services
     </h2>
 
@@ -145,62 +217,62 @@ useEffect(() => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
       {/* Card 1 */}
-      <div className="p-6 rounded-2xl bg-gray-200">
-        <h3 className="text-xl font-semibold mb-3">
-          Brand and Narrative Development
+      <div className="p-8 rounded-2xl bg-blue-100">
+        <h3 className={`${playfair.className} text-xl font-bold mb-3`}>
+          Brand Building &amp; <br />Storytelling
         </h3>
-        <p className="text-lg text-gray-700">
-          We define your voice, positioning, and messaging architecture from the ground up. Ensuring a clear, consistent, and credible brand across all touchpoints.
+        <p className="text-base text-gray-700 leading-relaxed">
+          We help define what your brand stands for, how it sounds, and what it says to people.
         </p>
       </div>
 
       {/* Card 2 (Highlighted) */}
-      <div className="p-6 rounded-2xl bg-cyan-500 text-black">
-        <h3 className="text-xl font-semibold mb-3">
-          Corporate Communications
+      <div className="p-8 rounded-2xl bg-blue-800 text-white">
+        <h3 className={`${playfair.className} text-xl font-bold mb-3`}>
+          Corporate <br />Communication
         </h3>
-        <p className="text-lg">
-          We deliver structured, multi stakeholder communication across business, product, and leadership messaging. Ensuring alignment, clarity, and consistency across internal and external narratives.
+        <p className="text-base leading-relaxed">
+          We help businesses communicate clearly with employees, customers, partners, and other important audiences.
         </p>
       </div>
 
       {/* Card 3 */}
-      <div className="p-6 rounded-2xl border border-black">
-        <h3 className="text-xl font-semibold mb-3">
-          Media Relations and Visibility
+      <div className="p-8 rounded-2xl border-2 border-black">
+        <h3 className={`${playfair.className} text-xl font-bold mb-3`}>
+          Media &amp; Publicity
         </h3>
-        <p className="text-lg text-gray-700">
-          We secure meaningful media coverage through strong journalist relationships and strategic outreach. Driving visibility across platforms that shape audience perception and industry presence.
+        <p className="text-base text-gray-700 leading-relaxed">
+          We help your brand get noticed in the right media through strong journalist relationships and relevant stories.
         </p>
       </div>
 
       {/* Card 4 */}
-      <div className="p-6 rounded-2xl bg-cyan-100">
-        <h3 className="text-xl font-semibold mb-3">
-          Reputation and Trust Management
+      <div className="p-8 rounded-2xl border-2 border-blue-200">
+        <h3 className={`${playfair.className} text-xl font-bold mb-3`}>
+          Building Trust &amp; <br />Reputation
         </h3>
-        <p className="text-lg text-gray-700">
-          We shape and strengthen how your brand is perceived through proactive storytelling and engagement. Helping you build credibility, manage risks, and sustain long term trust.
+        <p className="text-base text-gray-700 leading-relaxed">
+          We help build a strong, positive image for your brand and earn long-term trust.
         </p>
       </div>
 
       {/* Card 5 */}
-      <div className="p-6 rounded-2xl border border-cyan-500">
-        <h3 className="text-xl font-semibold mb-3">
-          Crisis and Issues Communication
+      <div className="p-8 rounded-2xl border-2 border-blue-800">
+        <h3 className={`${playfair.className} text-xl font-bold mb-3`}>
+          Crisis Communication
         </h3>
-        <p className="text-lg text-gray-700">
-          We prepare you for high stakes moments with crisis frameworks and rapid response strategies. Ensuring clear communication that protects reputation and maintains stakeholder confidence.
+        <p className="text-base text-gray-700 leading-relaxed">
+          We help you communicate clearly and quickly when something goes wrong, protecting your reputation and stakeholder trust.
         </p>
       </div>
 
-      {/* Card 6 (Dark Premium) */}
-      <div className="p-6 rounded-2xl bg-black text-white">
-        <h3 className="text-xl font-semibold mb-3">
-          Leadership and Executive Communications
+      {/* Card 6 */}
+      <div className="p-8 rounded-2xl bg-blue-100">
+        <h3 className={`${playfair.className} text-xl font-bold mb-3`}>
+          Leader &amp; Executive <br />Communication
         </h3>
-        <p className="text-lg text-gray-300">
-          We position your leadership as credible, influential voices within your industry. Building authority through thought leadership, media presence, and strategic messaging.
+        <p className="text-base text-gray-700 leading-relaxed">
+          We help leaders build their personal voice, share their ideas, and become trusted voices in their industry.
         </p>
       </div>
 
@@ -216,9 +288,9 @@ useEffect(() => {
     {/* LEFT SIDE */}
     <div className="flex flex-col">
 
-      {/* Top Cyan Block */}
-      <div className="bg-cyan-500 p-10 lg:p-16">
-        <h2 className="text-4xl lg:text-5xl font-serif text-black leading-tight">
+      {/* Top Light Blue Block */}
+      <div className="bg-blue-100 p-10 lg:p-16">
+        <h2 className={`${playfair.className} text-4xl lg:text-5xl text-black leading-tight`}>
           <span className="italic font-bold">Hear</span> <br />
           from our <br />
           <span className="font-bold ps-32">Clients</span>
@@ -226,17 +298,17 @@ useEffect(() => {
       </div>
 
       {/* Bottom Content */}
-      <div className="bg-cyan-100 p-10 lg:p-[90px] h-full relative overflow-hidden">
+      <div className="bg-blue-800 p-10 lg:p-[90px] h-full lg:min-h-[650px] relative overflow-hidden">
 
   {/* Slides */}
   <div className="transition-all duration-700 ease-in-out">
-    <p className="text-gray-800 text-lg leading-relaxed">
+    <p className="text-blue-100 text-lg leading-relaxed">
       {testimonials[current].text}
     </p>
 
-    <p className="mt-6 text-lg text-gray-700">
+    <p className="mt-6 text-lg text-blue-100">
       {testimonials[current].role},<br />
-      <span className="font-bold">
+      <span className="font-bold text-white">
         {testimonials[current].company}
       </span>
     </p>
@@ -249,7 +321,7 @@ useEffect(() => {
         key={index}
         onClick={() => setCurrent(index)}
         className={`w-3 h-3 rounded-full cursor-pointer transition-all ${
-          current === index ? "bg-black scale-125" : "bg-gray-400"
+          current === index ? "bg-white scale-125" : "bg-blue-400/50"
         }`}
       />
     ))}
@@ -260,13 +332,13 @@ useEffect(() => {
     </div>
 
     {/* RIGHT SIDE */}
-    <div className="bg-[#f5f5f5]">
+    <div className="bg-white h-full overflow-hidden">
 
       {/* Logos Grid */}
-      <div className="">
+      <div className="h-full">
             <img
               src={`/review-logo.jpeg`}
-              className="object-contain transition"
+              className="w-full h-full object-cover transition block"
             />
           </div>
 
@@ -276,52 +348,317 @@ useEffect(() => {
 
 </section>
 
-{/* FINAL CTA SECTION (REVERSED HERO) */}
-<section id="contact" className="min-h-[30vh] flex">
+{/* CTA BANNER SECTION */}
+<section className="w-full bg-white">
+  <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
 
-  {/* LEFT SIDE - FORM (disabled, see #ardent-contact form at bottom) */}
-  {/* <div className="flex items-center justify-center p-8 bg-[#f5f5f5]">
-    <PRForm />
-  </div> */}
-
-  {/* TEXT */}
-  <div className="relative flex items-center justify-center p-10 overflow-hidden w-full">
-{/* 🎥 Background Video */}
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover"
-  >
-    <source src="/vid-bg.mp4" type="video/mp4" />
-  </video>
-
-    {/* Content */}
-    <div className="relative z-10 max-w-2xl mx-auto text-center">
-      <h2 className="font-serif text-5xl lg:text-6xl leading-tight text-black">
-        Let’s Get <br />
-        <span className="text-cyan-500">Your Story</span> <br />
-        Out!
+    {/* TEXT */}
+    <div>
+      <h2 className={`${playfair.className} text-5xl lg:text-6xl leading-tight text-black max-w-xl`}>
+        Let&rsquo;s Get <span className="text-blue-800 font-black">Your<br /> Story</span> Out!
       </h2>
 
       {/* Underline Accent */}
-      <div className="w-20 h-[5px] bg-black mt-6 overflow-hidden mx-auto">
-  <div className="h-full w-0 bg-black"></div>
-</div>
+      <div className="w-20 h-[5px] bg-black mt-6"></div>
+    </div>
+
+    {/* BUTTONS */}
+    <div className="flex flex-wrap gap-4">
+      <a
+        href="#contact"
+        onClick={() => setFormMode("client")}
+        className="flex items-center justify-between gap-6 px-6 py-3 rounded-md bg-blue-800 text-white font-bold hover:opacity-90 transition"
+      >
+        I am a client
+        <img src="/arrow-blue.png" alt="" className="size-8" />
+      </a>
+      <a
+        href="#contact"
+        onClick={() => setFormMode("job")}
+        className="flex items-center justify-between gap-6 px-6 py-3 rounded-md border-2 border-blue-800 bg-white text-black font-bold hover:opacity-90 transition"
+      >
+        Work with us?
+        <img src="/arrow-white.png" alt="" className="size-8" />
+      </a>
     </div>
 
   </div>
 
 </section>
 
-      <section className="relative bg-white flex w-full min-h-screen h-fit" id="ardent-contact">
-        <Contact
-          track={false}
-          apiEndpoint="/api/pr-client-submit"
-          successUrl="/ardentco-pr-agency/success"
-        />
-      </section>
+{/* FINAL CTA + CONTACT FORM SECTION */}
+<section id="contact" className="relative w-full bg-white overflow-hidden">
+
+  {/* Blue background shape */}
+  <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[55%] bg-blue-800 rounded-tl-[140px] rounded-bl-[140px]"></div>
+
+  <div className="relative max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 grid lg:grid-cols-2 gap-12 items-center">
+
+    {/* TEXT + TOGGLE BUTTONS */}
+    <div>
+      <h2 className={`${playfair.className} text-5xl lg:text-6xl leading-tight text-black max-w-xl`}>
+        Let&rsquo;s Get <br /><span className="text-blue-800 font-black">Your Story</span> <br />Out!
+      </h2>
+
+      {/* Underline Accent */}
+      <div className="w-20 h-[5px] bg-black mt-6"></div>
+
+      {/* Toggle Buttons */}
+      <div className="flex flex-col gap-4 mt-10 max-w-xs">
+        <button
+          type="button"
+          onClick={() => setFormMode("client")}
+          className={`flex items-center justify-between gap-6 px-6 py-3 rounded-md font-bold transition ${
+            formMode === "client"
+              ? "bg-blue-800 text-white"
+              : "bg-white text-black border-2 border-blue-800"
+          }`}
+        >
+          I am a client
+          <img
+            src={formMode === "client" ? "/arrow-blue.png" : "/arrow-white.png"}
+            alt=""
+            className="size-8"
+          />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setFormMode("job")}
+          className={`flex items-center justify-between gap-6 px-6 py-3 rounded-md font-bold transition ${
+            formMode === "job"
+              ? "bg-blue-800 text-white"
+              : "bg-white text-black border-2 border-blue-800"
+          }`}
+        >
+          Work with us?
+          <img
+            src={formMode === "job" ? "/arrow-blue.png" : "/arrow-white.png"}
+            alt=""
+            className="size-8"
+          />
+        </button>
+      </div>
+    </div>
+
+    {/* FORM CARD */}
+    <div className="relative bg-white p-8 md:p-10 w-full max-w-md lg:ml-auto">
+      {formMode === "client" ? (
+        <form onSubmit={handleClientSubmit} className="space-y-5">
+          <div className="flex justify-between gap-3">
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="firstName" className="text-black font-bold mb-1 text-sm">First name</label>
+              <input
+                type="text"
+                id="firstName"
+                placeholder="First name"
+                value={formData.firstName}
+                onChange={(e) => handleInputChange("firstName", e.target.value)}
+                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                required
+              />
+            </div>
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="lastName" className="text-black font-bold mb-1 text-sm">Last name</label>
+              <input
+                type="text"
+                id="lastName"
+                placeholder="Last name"
+                value={formData.lastName}
+                onChange={(e) => handleInputChange("lastName", e.target.value)}
+                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-between gap-3">
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="companyName" className="text-black font-bold mb-1 text-sm">Company Name</label>
+              <input
+                type="text"
+                id="companyName"
+                placeholder="Company Name"
+                value={formData.companyName}
+                onChange={(e) => handleInputChange("companyName", e.target.value)}
+                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                required
+              />
+            </div>
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="designation" className="text-black font-bold mb-1 text-sm">Designation</label>
+              <input
+                type="text"
+                id="designation"
+                placeholder="Designation"
+                value={formData.designation}
+                onChange={(e) => handleInputChange("designation", e.target.value)}
+                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="email" className="text-black font-bold mb-1 text-sm">Company Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="you@company.com"
+              value={formData.email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              className="px-4 py-2 border border-black rounded-md focus:outline-none"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="phone" className="text-black font-bold mb-1 text-sm">Phone number</label>
+            <div className="flex gap-2">
+              <select className="px-3 py-2 border border-black rounded-md bg-black text-white font-bold">
+                <option>IND</option>
+              </select>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="+91xxxxxxxxxx"
+                value={formData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
+                className="flex-grow px-4 py-2 border border-black rounded-md focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="message" className="text-black font-bold mb-1 text-sm">Message</label>
+            <textarea
+              id="message"
+              placeholder="Leave us Message"
+              value={formData.message}
+              onChange={(e) => handleInputChange("message", e.target.value)}
+              className="px-4 py-2 border border-black rounded-md resize-none focus:outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="flex mx-auto bg-black text-white font-bold py-2.5 px-6 rounded-md justify-center disabled:opacity-70"
+          >
+            {isSubmitting ? "Sending..." : "Book a call with us"}
+          </button>
+
+          {status && <p className="text-sm text-center font-bold text-black">{status}</p>}
+        </form>
+      ) : (
+        <form onSubmit={handleJobSubmit} className="space-y-5">
+          <div className="flex justify-between gap-3">
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="jobFirstName" className="text-black font-bold mb-1 text-sm">First name</label>
+              <input
+                type="text"
+                id="jobFirstName"
+                placeholder="First name"
+                value={formData.firstName}
+                onChange={(e) => handleInputChange("firstName", e.target.value)}
+                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                required
+              />
+            </div>
+            <div className="flex flex-col w-1/2">
+              <label htmlFor="jobLastName" className="text-black font-bold mb-1 text-sm">Last name</label>
+              <input
+                type="text"
+                id="jobLastName"
+                placeholder="Last name"
+                value={formData.lastName}
+                onChange={(e) => handleInputChange("lastName", e.target.value)}
+                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="jobEmail" className="text-black font-bold mb-1 text-sm">Email</label>
+            <input
+              type="email"
+              id="jobEmail"
+              placeholder="you@company.com"
+              value={formData.email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              className="px-4 py-2 border border-black rounded-md focus:outline-none"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="jobPhone" className="text-black font-bold mb-1 text-sm">Phone number</label>
+            <div className="flex gap-2">
+              <select className="px-3 py-2 border border-black rounded-md bg-black text-white font-bold">
+                <option>IND</option>
+              </select>
+              <input
+                type="tel"
+                id="jobPhone"
+                placeholder="+91xxxxxxxxxx"
+                value={formData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
+                className="flex-grow px-4 py-2 border border-black rounded-md focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="department" className="text-black font-bold mb-1 text-sm">Choose Department</label>
+            <select
+              required
+              id="department"
+              value={formData.department}
+              onChange={(e) => handleInputChange("department", e.target.value)}
+              className="px-4 py-2 border border-black rounded-md focus:outline-none cursor-pointer"
+            >
+              <option value="">Select Department</option>
+              <option value="Public Relations">Public Relations</option>
+              <option value="Public Policy">Public Policy</option>
+              <option value="Digital Communications">Digital Communications</option>
+              <option value="Internship">Internship</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="upload" className="text-black font-bold mb-1 text-sm">Select your CV</label>
+            <input
+              required
+              accept=".pdf, .doc, .docx"
+              type="file"
+              id="upload"
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  cv: e.target.files ? e.target.files[0] : null,
+                }))
+              }
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="flex mx-auto bg-black text-white font-bold py-2.5 px-6 rounded-md justify-center disabled:opacity-70"
+          >
+            {isSubmitting ? "Sending..." : "Submit Application"}
+          </button>
+
+          {status && <p className="text-sm text-center font-bold text-black">{status}</p>}
+        </form>
+      )}
+    </div>
+
+  </div>
+
+</section>
     </>
   );
 }
