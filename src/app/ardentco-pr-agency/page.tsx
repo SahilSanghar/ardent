@@ -366,7 +366,7 @@ useEffect(() => {
 </section>
 
 {/* CTA BANNER SECTION */}
-<section className="w-full bg-white">
+<section className={`w-full bg-white ${showContactSection ? "lg:hidden" : ""}`}>
   <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-20 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
 
     {/* TEXT */}
@@ -384,18 +384,26 @@ useEffect(() => {
       <button
         type="button"
         onClick={() => openContactSection("client")}
-        className="flex items-center justify-between gap-6 px-6 py-3 rounded-md bg-blue-800 text-white font-bold hover:opacity-90 transition"
+        className={`flex items-center justify-between gap-6 px-6 py-3 rounded-md font-bold hover:opacity-90 transition ${
+          formMode === "client"
+            ? "bg-blue-800 text-white"
+            : "bg-white text-black border-2 border-blue-800"
+        }`}
       >
         I am a client
-        <img src="/arrow-blue.png" alt="" className="size-8" />
+        <img src={formMode === "client" ? "/arrow-blue.png" : "/arrow-white.png"} alt="" className="size-8" />
       </button>
       <button
         type="button"
         onClick={() => openContactSection("job")}
-        className="flex items-center justify-between gap-6 px-6 py-3 rounded-md border-2 border-blue-800 bg-white text-black font-bold hover:opacity-90 transition"
+        className={`flex items-center justify-between gap-6 px-6 py-3 rounded-md font-bold hover:opacity-90 transition ${
+          formMode === "job"
+            ? "bg-blue-800 text-white"
+            : "bg-white text-black border-2 border-blue-800"
+        }`}
       >
         Work with us?
-        <img src="/arrow-white.png" alt="" className="size-8" />
+        <img src={formMode === "job" ? "/arrow-blue.png" : "/arrow-white.png"} alt="" className="size-8" />
       </button>
     </div>
 
@@ -412,8 +420,8 @@ useEffect(() => {
 
   <div className="relative max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 grid lg:grid-cols-2 gap-12 items-center">
 
-    {/* TEXT + TOGGLE BUTTONS */}
-    <div>
+    {/* TEXT + TOGGLE BUTTONS (desktop only, mobile relies on the banner above) */}
+    <div className="hidden lg:block">
       <h2 className={`${playfair.className} text-5xl lg:text-6xl leading-tight text-black max-w-xl`}>
         Let&rsquo;s Get <br /><span className="text-blue-800 font-black">Your Story</span> <br />Out!
       </h2>
@@ -460,11 +468,11 @@ useEffect(() => {
     </div>
 
     {/* FORM CARD */}
-    <div className="relative bg-white p-8 md:p-10 w-full max-w-md lg:ml-auto">
+    <div className="relative bg-white p-8 md:p-10 w-full min-w-0 max-w-md lg:ml-auto">
       {formMode === "client" ? (
         <form onSubmit={handleClientSubmit} className="space-y-5">
-          <div className="flex justify-between gap-3">
-            <div className="flex flex-col w-1/2">
+          <div className="flex flex-col sm:flex-row justify-between gap-3">
+            <div className="flex flex-col w-full sm:w-1/2">
               <label htmlFor="firstName" className="text-black font-bold mb-1 text-sm">First name</label>
               <input
                 type="text"
@@ -472,11 +480,11 @@ useEffect(() => {
                 placeholder="First name"
                 value={formData.firstName}
                 onChange={(e) => handleInputChange("firstName", e.target.value)}
-                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
                 required
               />
             </div>
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-full sm:w-1/2">
               <label htmlFor="lastName" className="text-black font-bold mb-1 text-sm">Last name</label>
               <input
                 type="text"
@@ -484,14 +492,14 @@ useEffect(() => {
                 placeholder="Last name"
                 value={formData.lastName}
                 onChange={(e) => handleInputChange("lastName", e.target.value)}
-                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
                 required
               />
             </div>
           </div>
 
-          <div className="flex justify-between gap-3">
-            <div className="flex flex-col w-1/2">
+          <div className="flex flex-col sm:flex-row justify-between gap-3">
+            <div className="flex flex-col w-full sm:w-1/2">
               <label htmlFor="companyName" className="text-black font-bold mb-1 text-sm">Company Name</label>
               <input
                 type="text"
@@ -499,11 +507,11 @@ useEffect(() => {
                 placeholder="Company Name"
                 value={formData.companyName}
                 onChange={(e) => handleInputChange("companyName", e.target.value)}
-                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
                 required
               />
             </div>
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-full sm:w-1/2">
               <label htmlFor="designation" className="text-black font-bold mb-1 text-sm">Designation</label>
               <input
                 type="text"
@@ -511,7 +519,7 @@ useEffect(() => {
                 placeholder="Designation"
                 value={formData.designation}
                 onChange={(e) => handleInputChange("designation", e.target.value)}
-                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
                 required
               />
             </div>
@@ -525,7 +533,7 @@ useEffect(() => {
               placeholder="you@company.com"
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
-              className="px-4 py-2 border border-black rounded-md focus:outline-none"
+              className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
               required
             />
           </div>
@@ -542,7 +550,7 @@ useEffect(() => {
                 placeholder="+91xxxxxxxxxx"
                 value={formData.phone}
                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                className="flex-grow px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="flex-grow min-w-0 px-4 py-2 border border-black rounded-md focus:outline-none"
                 required
               />
             </div>
@@ -555,7 +563,7 @@ useEffect(() => {
               placeholder="Leave us Message"
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
-              className="px-4 py-2 border border-black rounded-md resize-none focus:outline-none"
+              className="w-full px-4 py-2 border border-black rounded-md resize-none focus:outline-none"
             />
           </div>
 
@@ -571,8 +579,8 @@ useEffect(() => {
         </form>
       ) : (
         <form onSubmit={handleJobSubmit} className="space-y-5">
-          <div className="flex justify-between gap-3">
-            <div className="flex flex-col w-1/2">
+          <div className="flex flex-col sm:flex-row justify-between gap-3">
+            <div className="flex flex-col w-full sm:w-1/2">
               <label htmlFor="jobFirstName" className="text-black font-bold mb-1 text-sm">First name</label>
               <input
                 type="text"
@@ -580,11 +588,11 @@ useEffect(() => {
                 placeholder="First name"
                 value={formData.firstName}
                 onChange={(e) => handleInputChange("firstName", e.target.value)}
-                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
                 required
               />
             </div>
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-full sm:w-1/2">
               <label htmlFor="jobLastName" className="text-black font-bold mb-1 text-sm">Last name</label>
               <input
                 type="text"
@@ -592,7 +600,7 @@ useEffect(() => {
                 placeholder="Last name"
                 value={formData.lastName}
                 onChange={(e) => handleInputChange("lastName", e.target.value)}
-                className="px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
               />
             </div>
           </div>
@@ -605,7 +613,7 @@ useEffect(() => {
               placeholder="you@company.com"
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
-              className="px-4 py-2 border border-black rounded-md focus:outline-none"
+              className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
               required
             />
           </div>
@@ -622,7 +630,7 @@ useEffect(() => {
                 placeholder="+91xxxxxxxxxx"
                 value={formData.phone}
                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                className="flex-grow px-4 py-2 border border-black rounded-md focus:outline-none"
+                className="flex-grow min-w-0 px-4 py-2 border border-black rounded-md focus:outline-none"
                 required
               />
             </div>
@@ -635,7 +643,7 @@ useEffect(() => {
               id="department"
               value={formData.department}
               onChange={(e) => handleInputChange("department", e.target.value)}
-              className="px-4 py-2 border border-black rounded-md focus:outline-none cursor-pointer"
+              className="w-full px-4 py-2 border border-black rounded-md focus:outline-none cursor-pointer"
             >
               <option value="">Select Department</option>
               <option value="Public Relations">Public Relations</option>
@@ -658,6 +666,7 @@ useEffect(() => {
                   cv: e.target.files ? e.target.files[0] : null,
                 }))
               }
+              className="w-full max-w-full text-sm"
             />
           </div>
 
