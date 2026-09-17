@@ -363,7 +363,7 @@ useEffect(() => {
       {/* Logos Grid */}
       <div className="h-full">
             <img
-              src={`/review-logo.jpeg`}
+              src="/influencer-testimonial.jpg"
               className="w-full h-full object-cover transition block"
             />
           </div>
