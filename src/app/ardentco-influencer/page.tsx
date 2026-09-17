@@ -312,7 +312,7 @@ useEffect(() => {
   <div className="grid lg:grid-cols-2">
 
     {/* LEFT SIDE */}
-    <div className="flex flex-col">
+    <div className="relative z-20 flex flex-col">
 
       {/* Top Light Blue Block */}
       <div className="bg-blue-100 p-10 lg:p-16">
@@ -358,15 +358,13 @@ useEffect(() => {
     </div>
 
     {/* RIGHT SIDE */}
-    <div className="bg-white h-full overflow-hidden">
+    <div className="relative z-10 bg-white h-full overflow-hidden lg:-ml-[20%] lg:w-[120%]">
 
-      {/* Logos Grid */}
-      <div className="h-full">
-            <img
-              src="/influencer-testimonial.jpg"
-              className="w-full h-full object-cover transition block"
-            />
-          </div>
+      {/* Themed Image */}
+      <img
+        src="/influencer-testimonial.jpg"
+        className="w-full h-full object-cover object-[35%_center] block"
+      />
 
     </div>
 
