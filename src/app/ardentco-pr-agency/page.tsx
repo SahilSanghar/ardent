@@ -69,6 +69,7 @@ useEffect(() => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState("");
   const [formData, setFormData] = useState({
+    fullName: "",
     firstName: "",
     lastName: "",
     companyName: "",
@@ -91,8 +92,7 @@ useEffect(() => {
 
     try {
       await axios.post("/api/pr-client-submit", {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        name: formData.fullName,
         companyName: formData.companyName,
         designation: formData.designation,
         phone: formData.phone,
@@ -154,6 +154,11 @@ useEffect(() => {
 
         {/* LEFT: VIDEO + TEXT */}
         <div className="relative flex items-center p-14 md:p-16 overflow-hidden w-full md:w-1/2 min-h-[60vh] md:min-h-screen">
+          {/* LOGO */}
+          <a href="/" className="absolute z-20 top-5 left-5 md:top-6 md:left-6">
+            <img src="/logo.png" alt="Ardent Co." className="w-[70px] h-[70px] md:w-[90px] md:h-[90px]" />
+          </a>
+
           {/* 🎥 Background Video */}
           <video
             autoPlay
@@ -293,6 +298,17 @@ useEffect(() => {
         </p>
       </div>
 
+    </div>
+
+    {/* CTA */}
+    <div className="mt-12 text-center">
+      <button
+        type="button"
+        onClick={() => openContactSection("client")}
+        className="inline-block px-8 py-3 bg-blue-800 text-white rounded-md font-semibold hover:bg-blue-900 transition"
+      >
+        Get Quote Now
+      </button>
     </div>
   </div>
 </section>
@@ -471,31 +487,17 @@ useEffect(() => {
     <div className="relative bg-white p-8 md:p-10 w-full min-w-0 max-w-md lg:ml-auto">
       {formMode === "client" ? (
         <form onSubmit={handleClientSubmit} className="space-y-5">
-          <div className="flex flex-col sm:flex-row justify-between gap-3">
-            <div className="flex flex-col w-full sm:w-1/2">
-              <label htmlFor="firstName" className="text-black font-bold mb-1 text-sm">First name</label>
-              <input
-                type="text"
-                id="firstName"
-                placeholder="First name"
-                value={formData.firstName}
-                onChange={(e) => handleInputChange("firstName", e.target.value)}
-                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
-                required
-              />
-            </div>
-            <div className="flex flex-col w-full sm:w-1/2">
-              <label htmlFor="lastName" className="text-black font-bold mb-1 text-sm">Last name</label>
-              <input
-                type="text"
-                id="lastName"
-                placeholder="Last name"
-                value={formData.lastName}
-                onChange={(e) => handleInputChange("lastName", e.target.value)}
-                className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
-                required
-              />
-            </div>
+          <div className="flex flex-col">
+            <label htmlFor="fullName" className="text-black font-bold mb-1 text-sm">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Full Name"
+              value={formData.fullName}
+              onChange={(e) => handleInputChange("fullName", e.target.value)}
+              className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
+              required
+            />
           </div>
 
           <div className="flex flex-col sm:flex-row justify-between gap-3">
