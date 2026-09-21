@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
   designation,
   phone,
   email,
+  budget,
   message
 } = await request.json();
 
@@ -36,6 +37,7 @@ export async function POST(request: NextRequest) {
   Designation: ${designation}
           Phone: ${phone}
           Email: ${email}
+          Budget: ${budget || "Not provided"}
           Message: ${message}
         `,
       html: `
@@ -45,6 +47,7 @@ export async function POST(request: NextRequest) {
   <p><strong>Designation:</strong> ${designation}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Budget:</strong> ${budget || "Not provided"}</p>
           <p><strong>Message:</strong> ${message}</p>
         `,
     });

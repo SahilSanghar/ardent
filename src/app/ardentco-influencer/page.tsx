@@ -71,6 +71,7 @@ useEffect(() => {
     designation: "",
     email: "",
     phone: "",
+    budget: "",
     message: "",
     department: "",
     cv: null as File | null,
@@ -92,6 +93,7 @@ useEffect(() => {
         designation: formData.designation,
         phone: formData.phone,
         email: formData.email,
+        budget: formData.budget,
         message: formData.message,
       });
       router.replace("/ardentco-influencer/success");
@@ -150,7 +152,7 @@ useEffect(() => {
         {/* LEFT: VIDEO + TEXT */}
         <div className="relative flex items-center p-14 md:p-16 overflow-hidden w-full md:w-1/2 min-h-[60vh] md:min-h-screen">
           {/* LOGO */}
-          <a href="/" className="absolute z-20 top-5 left-5 md:top-6 md:left-6">
+          <a href="/" className="fixed z-50 top-5 left-5 md:top-6 md:left-6">
             <img src="/logo.png" alt="Ardent Co." className="w-[70px] h-[70px] md:w-[90px] md:h-[90px]" />
           </a>
 
@@ -528,6 +530,20 @@ useEffect(() => {
               onChange={(e) => handleInputChange("email", e.target.value)}
               className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
               required
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="budget" className="text-black font-bold mb-1 text-sm">Budget</label>
+            <input
+              type="number"
+              inputMode="numeric"
+              min="0"
+              id="budget"
+              placeholder="Enter your budget"
+              value={formData.budget}
+              onChange={(e) => handleInputChange("budget", e.target.value)}
+              className="w-full px-4 py-2 border border-black rounded-md focus:outline-none"
             />
           </div>
 
