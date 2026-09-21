@@ -151,7 +151,7 @@ useEffect(() => {
         <div className="relative flex items-center p-14 md:p-16 overflow-hidden w-full md:w-1/2 min-h-[60vh] md:min-h-screen">
           {/* LOGO */}
           <a href="/" className="fixed z-50 top-5 left-5 md:top-6 md:left-6">
-            <img src="/logo.png" alt="Ardent Co." className="w-[70px] h-[70px] md:w-[90px] md:h-[90px]" />
+            <img src="/logo-new.png" alt="Ardent Co." className="w-[70px] h-[70px] md:w-[90px] md:h-[90px]" />
           </a>
 
           {/* 🎥 Background Video */}
