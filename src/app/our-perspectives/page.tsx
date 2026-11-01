@@ -263,7 +263,7 @@ export default function Page() {
               image={
                 "/research/images/Brief On Strengthening Quantum Applications Ecosystem in India.png"
               }
-              link="/research/Brief On Strengthening Quantum Applications Ecosystem in India.pdf"
+              link="/research/Brief on Strengthening Quantum Applications Ecosystem in India.pdf"
             />
           </div>
           <div className="flex md:flex-row flex-col gap-10 mx-auto pt-10">
@@ -271,7 +271,7 @@ export default function Page() {
               title1={"Indian VC Ecosystem 2024"}
               animation="left"
               image={"/research/images/indianVC.png"}
-              link="/research/indianVC.pdf"
+              link="/research/IndianVC.pdf"
             />
 
             <InfoCard
